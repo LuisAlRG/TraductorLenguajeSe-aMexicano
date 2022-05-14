@@ -156,6 +156,13 @@ public class ReproductorSenhas : MonoBehaviour
         salidaNombreAnimador.text = "Deletreado: " + letra;
     }
 
+    public void MostrarLetraActual(string palabra, char letra)
+    {
+        if (salidaNombreAnimador == null)
+            return;
+        salidaNombreAnimador.text = palabra+" / letra: " + letra;
+    }
+
     public void LimpiarNombreActualAnimacion()
     {
         if (salidaNombreAnimador == null)

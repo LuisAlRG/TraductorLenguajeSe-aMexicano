@@ -54,6 +54,7 @@ public class ListaANodo : MonoBehaviour
             nuevoObjeto.transform.SetParent(gameObject.transform, false);
             //gameObject.transform.SetAsLastSibling();
         }
+        Canvas.ForceUpdateCanvases();
     }
 
     public void MoverSiguientePalabra()

@@ -32,6 +32,7 @@ public class MenuOpciones : MonoBehaviour
     }
     void Start()
     {
+
         if (panelOpciones == null)
             panelOpciones = GameObject.Find("PanelMenu");
 

@@ -4,15 +4,16 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class AnalizadorPalabras : MonoBehaviour
 {
-    [SerializeField] private InputField textoInput;
+    [SerializeField] private TMP_InputField textoInput;
     [SerializeField] private ListaANodo listaPalabrasEncontradas;
-    [SerializeField] private ReproductorSenhas reproductor;
+    [SerializeField] protected ReproductorSenhas reproductor;
 
     public List<string> enDixionario;
-    string valueInputIn
+    public string valueInputIn
     {
         get { if (textoInput != null) return textoInput.text; return ""; }
     }
@@ -43,7 +44,7 @@ public class AnalizadorPalabras : MonoBehaviour
             TextoEjemplo("aba bab");
     }
 
-    private void AnalizarTexto()
+    virtual protected void AnalizarTexto()
     {
         string respuesta;
         respuesta = valueInputIn;
@@ -55,7 +56,7 @@ public class AnalizadorPalabras : MonoBehaviour
     }
 
     //quitar elementos que no consideramos para el analizador
-    private string LipiarTexto(string textoIn)
+    virtual protected string LipiarTexto(string textoIn)
     {
         //replasar simbolos por espacios
         textoIn = textoIn.Replace(",", " ");
@@ -69,14 +70,14 @@ public class AnalizadorPalabras : MonoBehaviour
         return textoIn;
     }
 
-    private string[] SepararPalabras(string textoCompleto)
+    protected string[] SepararPalabras(string textoCompleto)
     {
         if (textoCompleto == "")
             return new string[0];
         return textoCompleto.Split(new char[] { ' ' }, System.StringSplitOptions.RemoveEmptyEntries);
     }
 
-    private int[] EnDixionario(string[] palabras)
+    protected int[] EnDixionario(string[] palabras)
     {
         if(palabras == null)
             return new int[0];
@@ -95,7 +96,7 @@ public class AnalizadorPalabras : MonoBehaviour
         return enDixionario.Contains(palabra.ToUpper());
     }
 
-    private void DesplegarPalabras(string[] palabras)
+    virtual protected void DesplegarPalabras(string[] palabras)
     {
         if (listaPalabrasEncontradas == null)
             return;
@@ -109,7 +110,7 @@ public class AnalizadorPalabras : MonoBehaviour
             textoInput.text = abecedario;
     }
 
-    private void TextoEjemplo(string ejemplo)
+    protected void TextoEjemplo(string ejemplo)
     {
         if (textoInput != null)
             textoInput.text = ejemplo;

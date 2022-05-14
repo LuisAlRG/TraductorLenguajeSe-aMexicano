@@ -121,6 +121,16 @@ public class EstadoDeletreo : EstadoAtualPersonaje
             respuesta = letra - 'a' + 1;
         if (letra >= 'A' && letra <= 'Z')
             respuesta = letra - 'A' + 1;
+        if (letra == 'á' || letra == 'Á')
+            respuesta = 1;
+        if (letra == 'é' || letra == 'É')
+            respuesta = 5;
+        if (letra == 'í' || letra == 'Í')
+            respuesta = 9;
+        if (letra == 'ó' || letra == 'Ó')
+            respuesta = 15;
+        if (letra == 'ú' || letra == 'Ú')
+            respuesta = 21;
         return respuesta;
     }
 
@@ -133,7 +143,10 @@ public class EstadoDeletreo : EstadoAtualPersonaje
     private void Proceso()
     {
         ObtenerLetra();
-        instancia.MostrarLetraActual(letraActual);
+        //aver algo
+        string palabraSeñalada = palabra.Remove(puntero, 1).Insert(puntero, "[" + letraActual + "]");
+
+        instancia.MostrarLetraActual(palabraSeñalada, letraActual);
         MostrarLetraAnimacion(ObtenerNumeroLetra(letraActual));
         SiguienteLetra();
     }

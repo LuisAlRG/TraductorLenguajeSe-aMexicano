@@ -74,9 +74,9 @@ public class NodoPalabra : MonoBehaviour, IPointerClickHandler
         int colorIndx = tipo;
         if (colorIndx >= coloresTipoBG.Length)
             colorIndx = 0;
-        Debug.Log("si Entra a ver si cambia color");
-        Debug.Log(coloresTipoBG[colorIndx]);
-        Debug.Log(coloresTipoText[colorIndx]);
+        //Debug.Log("si Entra a ver si cambia color");
+        //Debug.Log(coloresTipoBG[colorIndx]);
+        //Debug.Log(coloresTipoText[colorIndx]);
         backGround.color = coloresTipoBG[colorIndx];
         textValue.color = coloresTipoText[colorIndx];
 
