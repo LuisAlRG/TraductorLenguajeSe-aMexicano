@@ -5,6 +5,14 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
+/*
+* Script que se encarga de manejar los botones de la interface
+* que permite interactuar con el reproductor de animacion de nuestro
+* personaje en pantalla.
+* basicamente hace todo loque hace un boton de unity, y tiene añadido
+* una referencia al grupo de botones para poder comunicarse entre ellos.
+*/
+
 [RequireComponent(typeof(Image))]
 public class BotonReproductor : MonoBehaviour, 
     IPointerEnterHandler, 

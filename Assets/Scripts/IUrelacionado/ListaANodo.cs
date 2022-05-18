@@ -2,6 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+* Script que se encarga de manejar una lista de "NodoPalabra" que
+* permite guardar cada palabra como un nodo y mostrarlo en un Elemento
+* de pantalla.
+* Tambien se encarga un poco del aspecto de los Nodos (o capsulas) que 
+* aparece en pantalla con algunas funciones de interaccion con la lista
+* (como seria el avansar de palabra cambiando su indice o interactuar 
+* con los botones de reproduccion).
+*/
 
 public class ListaANodo : MonoBehaviour
 {

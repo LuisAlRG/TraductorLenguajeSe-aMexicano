@@ -7,6 +7,17 @@ using UnityEngine.UI;
 using AnotherFileBrowser.Windows;
 using TMPro;
 
+/*
+* script que se encarga de analisar el texto de un archivo Cargado.
+* Basicamente se encarga de lo mismo que el script de "AnalizadorPalabra"
+* pero tiene unas cosas extras:
+*   Tiene otra manera de limpiar el texto (considera salto de linea y giones).
+*   La posibilidad de cargar archivos de windows.
+* Cosas que se le podria agregar:
+*   Invetigando un poco los atces de abrir archivos, seria conseguir 
+*       una manera de ver que funcione con otros sistrmas operativos.
+*/
+
 public class AnalizadorPalabrasArchivos : AnalizadorPalabras
 {
     private string textoEnCuestion = "";
@@ -54,9 +65,9 @@ public class AnalizadorPalabrasArchivos : AnalizadorPalabras
     {
         string resultado = " ";
         //letras
-            resultado += "a-zÒA-Z—";
+            resultado += "a-z√±A-Z√ë";
         //acento
-            resultado += "·ÈÌÛ˙¡…Õ”⁄";
+            resultado += "√°√©√≠√≥√∫¬¥√Å√â√ç√ì√ö";
         //numeros
         resultado += "0-9";
         resultado = @$"[^{resultado}]";
@@ -78,7 +89,7 @@ public class AnalizadorPalabrasArchivos : AnalizadorPalabras
         //remplasar punto como nada
         textoIn = textoIn.Replace(".", "");
 
-        // una ultima revision para que solo permita letras y numeros pero no simbolos extraÒos
+        // una ultima revision para que solo permita letras y numeros pero no simbolos extra√±os
         textoIn = Regex.Replace(textoIn, QueLetrasSeAdmite(), "");
 
         return textoIn;

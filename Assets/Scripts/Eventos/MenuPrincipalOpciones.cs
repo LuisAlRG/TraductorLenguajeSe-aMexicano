@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/*
+* script que se encarga de manejar las opciones que aparese en la pantalla principal del programa
+* esta sujeto a cambios
+*/
+
 public class MenuPrincipalOpciones : MonoBehaviour
 {
     

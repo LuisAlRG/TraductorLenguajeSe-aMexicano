@@ -6,6 +6,13 @@ using TMPro;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 
+/*
+* Script que se encarga de mostrar el elemento palabra del programa
+* para ser visible en la pantalla y tener algunas funciones con la 
+* interaccion con el raton de la computadora.
+* Tiene una referencia del elemento que engrupa todo los Nodos.
+*/
+
 [RequireComponent(typeof(Image))]
 [RequireComponent(typeof(Outline))]
 public class NodoPalabra : MonoBehaviour, IPointerClickHandler

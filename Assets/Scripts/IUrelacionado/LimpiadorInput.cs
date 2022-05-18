@@ -4,6 +4,11 @@ using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*
+* script que funciona para evitar que siertos caracteres 
+* sean usado en el recuadro de texto
+*/
+
 public class LimpiadorInput : MonoBehaviour
 {
     [SerializeField] InputField principalInput;
@@ -33,7 +38,7 @@ public class LimpiadorInput : MonoBehaviour
         string quePermite = QueSeAdmite();
         // Replace invalid characters with empty strings.
         /*return Regex.Replace(strIn,
-              @"[^a-zñA-ZÑ0-9¿?. ]", "");*/
+			  @"[^a-zÃ±A-ZÃ‘0-9Â¡!Â¿?. ]", "");*/
         return Regex.Replace(strIn, quePermite, "");
     }
 
@@ -41,13 +46,13 @@ public class LimpiadorInput : MonoBehaviour
     {
         string resultado = " ";
         if (letras)
-            resultado += "a-zñA-ZÑ";
+            resultado += "a-zÃ±A-ZÃ‘";
         if (numeros)
             resultado += "0-9";
         if (punto)
             resultado += ".";
         if (signos)
-            resultado += "¿?¡!";
+            resultado += "Â¿?Â¡!";
         resultado = @$"[^{resultado}]";
         return resultado;
 
@@ -58,7 +63,7 @@ public class LimpiadorInput : MonoBehaviour
         principalInput.text = CleanInput(valorIntentado);
     }
 
-    void  InputValueEnter()
+    void InputValueEnter()
     {
         Debug.Log("si Entro a value enter");
     }

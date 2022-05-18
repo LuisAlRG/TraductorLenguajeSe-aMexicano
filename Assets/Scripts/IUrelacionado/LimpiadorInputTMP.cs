@@ -5,6 +5,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+/*
+* Script que funciona para evitar que siertos caracteres 
+* sean usado en el recuadro de texto, en este casu usando
+* el input de TMP (Text Mesh Pro) como cuadro de texto.
+*/
 
 public class LimpiadorInputTMP : MonoBehaviour
 {
@@ -36,7 +41,7 @@ public class LimpiadorInputTMP : MonoBehaviour
         string quePermite = QueSeAdmite();
         // Replace invalid characters with empty strings.
         /*return Regex.Replace(strIn,
-              @"[^a-zñA-ZÑ0-9¿?. ]", "");*/
+              @"[^a-zÃ±A-ZÃ‘0-9Â¿?. ]", "");*/
         return Regex.Replace(strIn, quePermite, "");
     }
 
@@ -44,13 +49,13 @@ public class LimpiadorInputTMP : MonoBehaviour
     {
         string resultado = " ";
         if (letras)
-            resultado += "a-zñáéíóúA-ZÑÁÉÍÓÚ";
+            resultado += "a-zÃ¡Ã©Ã­Ã³ÃºA-ZÃÃ‰ÃÃ“Ãš";
         if (numeros)
             resultado += "0-9";
         if (punto)
             resultado += ".";
         if (signos)
-            resultado += "¿?¡!";
+            resultado += "Â¿?Â¡!";
         if (saltosDeLinea)
             resultado += "\n";
         resultado = @$"[^{resultado}]";

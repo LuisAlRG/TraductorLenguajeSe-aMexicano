@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Un intento pasado del script del Analizador de texto.
 
 public class Analizador : MonoBehaviour
 {
@@ -60,7 +61,7 @@ public class Analizador : MonoBehaviour
     {
         if (inputField == null)
             return;
-        string abecedario = "abcdefghijklmnopqrstuvwxyzñ";
+        string abecedario = "abcdefghijklmnopqrstuvwxyzÃ±";
         inputField.text = abecedario;
     }
 

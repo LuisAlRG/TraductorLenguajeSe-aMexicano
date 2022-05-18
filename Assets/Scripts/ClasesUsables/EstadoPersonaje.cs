@@ -2,6 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+* Clase de Estado de personaje
+* Esta clase funciona para indicar que estado esta nuestro personaje en pantalla,
+* si esta en espera a que el usuario ponga play, si esta apunto de animar una palabra,
+* si esta deletreando o animando completo y otros mas.
+* En la forma en que funciona esto es que esta clase es creada en el script de reproductor
+* de seÃ±a y esta clase llama a la funcion "handleInput" en el Update del programa, esta funcion
+* revisa algun parametro o tiempo en la que este el personaje en pantalla y regresa el estado que
+* deveria estar al detectar algo, si no detecta nada se regresa a si mismo, si dectecta algo 
+* regresa el siguiente estado que deseamos estar.
+* los estados que tenemos son:
+*   EnEspera -> espera a que el valor de "continuo" sea verdadero para empezar la reporduccion
+*   Deletreo -> almacena la palabra en reproduccion y recorre cada letra para deletrearlo en pantalla,
+*               tambien tiene que esperar a que la reproduccion acabe (tambien tiene un tiempo de espera
+*               para lasiguiente animacion de deletreo).
+*   EjecutandoAnimacion -> guarda la palabra y ejecuta la animacion de la palabra. esta sujeto a cambios.
+*/
 public class EstadoAtualPersonaje
 {
     protected ReproductorSenhas instancia;
@@ -115,21 +132,21 @@ public class EstadoDeletreo : EstadoAtualPersonaje
     private int ObtenerNumeroLetra(char letra)
     {
         int respuesta = 0;
-        if (letra == 'ñ' || letra == 'Ñ')
+        if (letra == 'Ã±' || letra == 'Ã‘')
             respuesta = 27;
         else if (letra >= 'a' && letra <= 'z')
             respuesta = letra - 'a' + 1;
         if (letra >= 'A' && letra <= 'Z')
             respuesta = letra - 'A' + 1;
-        if (letra == 'á' || letra == 'Á')
+        if (letra == 'Ã¡' || letra == 'Ã')
             respuesta = 1;
-        if (letra == 'é' || letra == 'É')
+        if (letra == 'Ã©' || letra == 'Ã‰')
             respuesta = 5;
-        if (letra == 'í' || letra == 'Í')
+        if (letra == 'Ã­' || letra == 'Ã')
             respuesta = 9;
-        if (letra == 'ó' || letra == 'Ó')
+        if (letra == 'Ã³' || letra == 'Ã“')
             respuesta = 15;
-        if (letra == 'ú' || letra == 'Ú')
+        if (letra == 'u' || letra == 'Ãš')
             respuesta = 21;
         return respuesta;
     }
@@ -144,9 +161,9 @@ public class EstadoDeletreo : EstadoAtualPersonaje
     {
         ObtenerLetra();
         //aver algo
-        string palabraSeñalada = palabra.Remove(puntero, 1).Insert(puntero, "[" + letraActual + "]");
+        string palabraSeÃ±alada = palabra.Remove(puntero, 1).Insert(puntero, "[" + letraActual + "]");
 
-        instancia.MostrarLetraActual(palabraSeñalada, letraActual);
+        instancia.MostrarLetraActual(palabraSeÃ±alada, letraActual);
         MostrarLetraAnimacion(ObtenerNumeroLetra(letraActual));
         SiguienteLetra();
     }

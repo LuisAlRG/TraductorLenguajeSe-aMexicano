@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+* script que se encarga de manejar las opciones que aparese en otras pantallas
+* esta sujeto a cambios
+*/
+
 public class MenuOpciones : MonoBehaviour
 {
     [SerializeField] private GameObject panelOpciones;

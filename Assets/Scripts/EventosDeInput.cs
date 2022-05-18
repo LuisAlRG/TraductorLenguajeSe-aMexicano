@@ -4,6 +4,9 @@ using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Un script anterior que controlaba lo que se insertava en un cuadro de texto
+// el codigo que ahora se usa se llama "LimpiadorInput.cs"
+
 public class EventosDeInput : MonoBehaviour
 {
     [SerializeField] InputField prinsipalInput;
@@ -20,7 +23,7 @@ public class EventosDeInput : MonoBehaviour
     {
         // Replace invalid characters with empty strings.
         return Regex.Replace(strIn,
-              @"[^a-zñA-ZÑ0-9¿?. ]", "");
+              @"[^a-zÃ±A-ZÃ‘0-9!Â¡Â¿?. ]", "");
     }
     //llaman cuando el input cambia
     void inputValueChanged(string attemptedVal)

@@ -2,6 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+* Script que se encarja de manejar un listado botones de interface
+* que permite interactuar con el reproductor de animacion de nuestro
+* personaje en pantalla.
+* Basicamente tiene constancia de que boton esta activo y que hacer si
+* se oprime otro boton del mismo conjunto.
+*/
+
 public class GrupoBotonReproductor : MonoBehaviour
 {
     [SerializeReference] private List<BotonReproductor> losBotones;

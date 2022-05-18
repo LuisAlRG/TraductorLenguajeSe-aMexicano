@@ -6,6 +6,20 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+/*
+* script que se encarga de analisar el texto ingresado en el input
+* basicamente se encarga de:
+*   limpiar el texto que recive a caracteres que esperamos tener
+*   separar cada palabra en su propio nodo
+*   identificar si alguna palabra esta en el dixionario de conocidos 
+*       (esto significa que, si tenemos una animacion para la palabra 
+*        para que en vez de deletrearlo en se√±as sea reconosible para una sola palabra)
+*   enviar el listado de palabra para ser usado en el programa
+* Cosas que se le podria agregar:
+*   posibilidad de identificar frases con espacios
+*   una opcion que exija solo parabras conosidas o que todo sea para deletreo
+*/
+
 public class AnalizadorPalabras : MonoBehaviour
 {
     [SerializeField] private TMP_InputField textoInput;
@@ -39,7 +53,7 @@ public class AnalizadorPalabras : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.Alpha2))
             TextoEjemplo("palabras en minusculas PALABRAS EN MAYUSCULAS");
         else if (Input.GetKeyUp(KeyCode.Alpha3))
-            TextoEjemplo("jkzxÒ");
+            TextoEjemplo("jkzx√±");
         else if (Input.GetKeyUp(KeyCode.Alpha4))
             TextoEjemplo("aba bab");
     }
@@ -105,7 +119,7 @@ public class AnalizadorPalabras : MonoBehaviour
 
     private void MostrarAbecedario()
     {
-        string abecedario = "abcdefghijklmnÒopqrstuvwxyz";
+        string abecedario = "abcdefghijklmn√±opqrstuvwxyz";
         if (textoInput != null)
             textoInput.text = abecedario;
     }

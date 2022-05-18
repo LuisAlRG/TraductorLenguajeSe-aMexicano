@@ -4,6 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+/*
+* Script que se encarga de manejar el animador del personaje en pantalla
+* basicamente se encarga de mantener el estado del personaje y dependiendo de
+* la accion del usuario en los botones de reproduccion envia las señales de 
+* reproducir las animaciones y manejar el objeto "Animator" para realisar la
+* accion correspondiente
+* Por decirlo asi, es el encargado de comunicarse el estado del personaje con lo
+* que se ve en pantalla.
+*/
+
 public class ReproductorSenhas : MonoBehaviour
 {
     /* Estos valores son los que se definen en la pantalla de edicion de uniti 
