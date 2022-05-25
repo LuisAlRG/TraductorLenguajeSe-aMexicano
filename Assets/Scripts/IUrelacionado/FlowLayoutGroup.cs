@@ -28,7 +28,7 @@ public class FlowLayoutGroup : LayoutGroup
 	public enum Corner { UpperLeft = 0, UpperRight = 1, LowerLeft = 2, LowerRight = 3 }
 	public enum Constraint { Flexible = 0, FixedColumnCount = 1, FixedRowCount = 2 }
 
-	protected Vector2 m_CellSize = new Vector2(100, 100);
+	protected Vector2 m_CellSize = new Vector2(100, 220);
 	public Vector2 cellSize { get { return m_CellSize; } set { SetProperty(ref m_CellSize, value); } }
 
 	[SerializeField] protected Vector2 m_Spacing = Vector2.zero;
@@ -66,13 +66,51 @@ public class FlowLayoutGroup : LayoutGroup
 
 	public override void CalculateLayoutInputVertical()
 	{
+		/*
 		int minRows = 0;
 		float width = rectTransform.rect.size.x;
 		int cellCountX = Mathf.Max(1, Mathf.FloorToInt((width - padding.horizontal + spacing.x + 0.001f) / (cellSize.x + spacing.x)));
-		//		minRows = Mathf.CeilToInt(rectChildren.Count / (float)cellCountX);
-		minRows = 1;
+				minRows = Mathf.CeilToInt(rectChildren.Count / (float)cellCountX);
+		MegoradCalculoLayoutVertical();
+		//minRows = 5;
 		float minSpace = padding.vertical + (cellSize.y + spacing.y) * minRows - spacing.y;
-		SetLayoutInputForAxis(minSpace, minSpace, -1, 1);
+		minSpace = (22 + spacing.y) * minRows;
+		SetLayoutInputForAxis(minSpace, 10_000, -1, 1);
+		*/
+		MegoradCalculoLayoutVertical();
+	}
+
+	/*
+	 * Script agregado por Luis Alfonso ROdriguez Gonzalez, 
+	 * arreglando el problema de contar mal el conteo de los renglones
+	 * ahora si cuenta la cantidad correcta, siempre y cuando el tamaño
+	 * de todo los elementos hijos sean el mismo
+	 */
+	public void MegoradCalculoLayoutVertical()
+    {
+		int minRows = 0;
+		float width = rectTransform.rect.size.x;
+		float howMuchWidth = width;
+		float totalWidth = 0.0f;
+
+		float cellHeigth = 10; 
+		if(rectChildren.Count > 0)
+			cellHeigth = rectChildren[0].rect.size.y;
+		foreach (RectTransform hisCell in rectChildren)
+        {
+			howMuchWidth = howMuchWidth - (hisCell.rect.size.x /*- padding.horizontal*/ + spacing.x + 0.001f);
+			totalWidth += hisCell.rect.size.x /*- padding.horizontal*/ + spacing.x + 0.001f;
+			if(howMuchWidth < 0)
+            {
+				totalWidth += (hisCell.rect.size.x /*- padding.horizontal*/ + spacing.x + 0.001f)  + howMuchWidth;
+				howMuchWidth = width;
+			}
+		}
+		minRows = Mathf.CeilToInt(totalWidth / width) + 1;
+		//Debug.Log("minRow = " + minRows);
+		float minSpace;
+		minSpace = (cellHeigth + spacing.y) * minRows;
+		SetLayoutInputForAxis(minSpace, 10_000, -1, 1);
 	}
 
 	public override void SetLayoutHorizontal()

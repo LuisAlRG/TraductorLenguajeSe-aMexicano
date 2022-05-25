@@ -6329,6 +6329,7 @@ MonoBehaviour:
   numeros: 0
   punto: 0
   signos: 0
+  saltosDeLinea: 0
 --- !u!114 &1612781481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10320,7 +10321,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 352.11447, y: 0}
+  m_AnchoredPosition: {x: 352.24997, y: 0}
   m_SizeDelta: {x: 0, y: 22}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &2797020441418331254

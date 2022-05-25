@@ -21,15 +21,20 @@ using UnityEngine;
 */
 public class EstadoAtualPersonaje
 {
+    //instancia, basicamente es en donde la clase existe o deveria existir.
     protected ReproductorSenhas instancia;
 
+    //inicializador
     public EstadoAtualPersonaje() { }
 
+    //inicializador con parametro de la instancia pera estar seguro.
     public EstadoAtualPersonaje(ReproductorSenhas suInstancia)
     {
         this.instancia = suInstancia;
     }
 
+    //Metodo que se llamara a cada momento del update de su instancia, basicamente se encarga de 
+    //revisar si algun parametro cambio en el momento
     virtual public EstadoAtualPersonaje handleInput()
     {
         return this;

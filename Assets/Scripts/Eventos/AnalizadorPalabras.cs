@@ -22,20 +22,41 @@ using TMPro;
 
 public class AnalizadorPalabras : MonoBehaviour
 {
+    /* Valores que se definen en la pantalla de
+     * edicion de unity de los cuales son componentes
+     * ---
+     * variable                 Objetivo
+     * textoInput               Es el cuadro de texto (Input) que contiene el 
+                                escrito que se desea traducir.
+     * listaPalabrasEncontradas Este no es una lista sino un componente script 
+                                que controla lo fisico del listado de nodos.
+     * reproductor              Funciona como referencia del reproductor del 
+                                personaje y basicamente de aqui se manda las 
+                                palabras que deseamos ser animados.
+     * enDixionario             Lista de texto que funciona para definir las 
+                                palabras conocida que tiene animacion
+     */
     [SerializeField] private TMP_InputField textoInput;
     [SerializeField] private ListaANodo listaPalabrasEncontradas;
     [SerializeField] protected ReproductorSenhas reproductor;
 
     public List<string> enDixionario;
+    
+    //elemento publico de input para poder sacar el texto del elemento.
     public string valueInputIn
     {
         get { if (textoInput != null) return textoInput.text; return ""; }
     }
     
+    //Funcion para el ebento del boton que inicie el proceso de analizar texto.
     public void OnAnalizarTexto()
     {
         AnalizarTexto();
     }
+
+    //en este update revisa si se presiono enter
+    //tambien agrege unos atajos de tecla para que escribiese 
+    //  texto para probar ciertos casos, para ver si no hay errores
     private void Update()
     {
         if(
@@ -58,6 +79,13 @@ public class AnalizadorPalabras : MonoBehaviour
             TextoEjemplo("aba bab");
     }
 
+    /* algoritmo general de este metodo
+     * se guarda el input que este en el texto
+     * se limpia el dicho texto
+     * se separan las palabras guardandolo en un array
+     * se despliega para verlas en pantalla
+     * enviar las palabras al reproductor
+     */
     virtual protected void AnalizarTexto()
     {
         string respuesta;

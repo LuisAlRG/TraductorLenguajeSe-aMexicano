@@ -38,6 +38,8 @@ public class AnalizadorPalabrasArchivos : AnalizadorPalabras
             return;
         AnalizarTexto();
     }
+
+    //Metodo de leer archivo con ayuda de las clases y pluging de abrir archivo
     private void LeerArchivo()
     {
         BrowserProperties vp = new BrowserProperties()
