@@ -32,6 +32,27 @@ public class AnalizadorComplejo
         puntero++;
     }
 
+    private void AderirLetraPalabra(char cara)
+    {
+        palabraDelMomento += cara;
+    }
+
+    private void AderirPalabraLista()
+    {
+        PalabraComplejo p = new PalabraComplejo(palabraDelMomento);
+        palabrasEncontradas.Add(p);
+    }
+
+    private void ResetearPalabra()
+    {
+        palabraDelMomento = "";
+    }
+
+    private void RegresarAlSeguro()
+    {
+        puntero = ultimoSeguro;
+    }
+
     private void ActualizarSeguro()
     {
         ultimoSeguro = puntero;
@@ -53,26 +74,76 @@ public class AnalizadorComplejo
 
     protected List<PalabraComplejo> AnalisarTexto()
     {
-        for(;puntero < todoTexto.Length ; puntero++)
+        for(puntero = 0;puntero < todoTexto.Length ; puntero++)
         {
-
+            procesar();
         }
         return null;
     }    
 
-    private void procesar(char letra)
+    private void procesar()
     {
         switch(suEstado)
         {
             case estado.NoPalabra:
-
+                CasoNoPalabra();
                 break;
             case estado.EsPalabra:
-
+                CasoEsPalabra();
                 break;
             default:
                 UnError(1);
                 break;
+        }
+    }
+
+    //caso NoPalabra
+    private void CasoNoPalabra()
+    {
+        char caracter = ConsegirChar();
+        if(EsLetra(caracter))
+        {
+            AderirLetraPalabra(caracter);
+            suEstado = estado.EsPalabra;
+        }
+        else if (EsNumero(caracter))
+        {
+            AderirLetraPalabra(caracter);
+            suEstado = estado.EsPalabra;
+        }
+        else
+        {
+            ActualizarSeguro();
+            return;
+        }
+
+    }
+    //caso EsPalabra
+    private void CasoEsPalabra()
+    {
+        char caracter = ConsegirChar();
+        if(EsLetra(caracter))
+        {
+            AderirLetraPalabra(caracter);
+        }
+        else if (EsNumero(caracter))
+        {
+            AderirLetraPalabra(caracter);
+        }
+        else if (EsGuion(caracter))
+        {
+            return;
+        }
+        else if (EsEspacio(caracter))
+        {
+            AderirPalabraLista();
+            ActualizarSeguro();
+            ResetearPalabra();
+            suEstado = estado.NoPalabra;
+        }
+        else 
+        {
+            return;
         }
     }
 

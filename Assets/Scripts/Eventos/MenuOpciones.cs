@@ -1,51 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /*
 * script que se encarga de manejar las opciones que aparese en otras pantallas
 * esta sujeto a cambios
 */
 
-public class MenuOpciones : MonoBehaviour
+public class MenuOpciones : MenuPrincipalOpciones
 {
-    [SerializeField] private GameObject panelOpciones;
+    [SerializeField] private GameObject panelMenu;
 
     public void OnMostrarPantallaOpciones()
     {
         MostrarPantallaOpciones();
     }
 
-    public void OnSalirPrograma()
-    {
-        this.SalirPrograma();
-    }
-
     private void MostrarPantallaOpciones()
     {
-        if (panelOpciones == null)
+        if (panelMenu == null)
             return;
-        panelOpciones.SetActive(!(panelOpciones.activeSelf));
+        panelMenu.SetActive(!(panelMenu.activeSelf));
     }
 
-    private void SalirPrograma()
-    {
-        Debug.Log("Cerrando programa");
-        
-        //UnityEditor.EditorApplication.isPlaying = false;
-        Application.Quit();
-    }
-    void Start()
-    {
 
-        if (panelOpciones == null)
-            panelOpciones = GameObject.Find("PanelMenu");
-
-    }
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyUp(KeyCode.Escape))
             MostrarPantallaOpciones();
+    }
+
+    public void OnRegresarInicio()
+    {
+        SceneManager.LoadScene(0, LoadSceneMode.Single);
     }
 }

@@ -243,6 +243,11 @@ public class ReproductorSenhas : MonoBehaviour
     {
         if (suAnimador == null)
             suAnimador = GameObject.Find("Modelo_preparado").GetComponent<Animator>();
+        if (MainManager.ManagerInstancia == null)
+            return;
+        int checarRetraso = MainManager.ManagerInstancia.MiliSegundoEsperaGlobal;
+        if (checarRetraso > 800)
+            miliSegundoEspera = checarRetraso;
     }
 
     // Update is called once per frame
