@@ -239,6 +239,17 @@ public class ReproductorSenhas : MonoBehaviour
         interrumpir = true;
         botonesReproduccion.DeseleccionarBotonSeleccionado();
     }
+
+    public void RecargarMilisegundosEspera()
+    {
+        if (MainManager.ManagerInstancia == null)
+            return;
+        int checarRetraso = MainManager.ManagerInstancia.MiliSegundoEsperaGlobal;
+        //Debug.Log("elRetrasoEsDe: " + checarRetraso);
+        if (checarRetraso > 400)
+            miliSegundoEspera = checarRetraso;
+    }
+
     void Start()
     {
         if (suAnimador == null)
@@ -246,7 +257,7 @@ public class ReproductorSenhas : MonoBehaviour
         if (MainManager.ManagerInstancia == null)
             return;
         int checarRetraso = MainManager.ManagerInstancia.MiliSegundoEsperaGlobal;
-        if (checarRetraso > 800)
+        if (checarRetraso > 400)
             miliSegundoEspera = checarRetraso;
     }
 
