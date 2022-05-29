@@ -15,12 +15,36 @@ using TMPro;
 
 public class MenuPrincipalOpciones : MonoBehaviour
 {
+    /* Valores que se definen en la pantalla de edicion
+     * de unity de los cualos son componentes
+     * ---
+     * Variables                Objetivo
+     * audioMixer               Ete es una referencia para la musica o 
+                                sonido de fondo, no hay ninguno por 
+                                ahora pero por si acaso esta el metodo 
+                                de subir volumen.
+     * opcionesDeResoluciones   Elemento "drop down" que tiene las resoluciones
+                                lo requerimos para poder sacar las posibles
+                                resoluciones del programa en la computadora.
+     * velocidadAnimacionText   Texto que muestra el valor de segundos de la
+                                variable velocidad de retraso.
+     * barraVelocidadAnimacion  Varra que funciona para darle valor a la variable
+                                velocidad de retraso.
+     * checkBoxPantallaCompleta Variable que se usa para cambiar el estado de check
+                                de la pantalla completa.
+     * resoluciones             Esta variable guarda la posibles resoluciones y puede
+                                usarse para decirle que resolucion queremos.
+     *
+     *
+     */
     [SerializeField] private AudioMixer audioMixer;
     [SerializeField] private TMP_Dropdown opcionesDeResoluciones;
     [SerializeField] private TMP_Text velocidadAnimacionText;
     [SerializeField] private Scrollbar barraVelocidadAnimacion;
+    [SerializeField] private Toggle checkBoxPantallaCompleta;
+    
+    // Esta variable guarda la posibles resoluciones y usarse para decirle que resolucion queremos.
     private Resolution[] resoluciones;
-
     private int calidadIndex = 0;
     private bool quiereFullScreen = false;
     private int resolucionIndex = 0;
@@ -33,6 +57,9 @@ public class MenuPrincipalOpciones : MonoBehaviour
         resoluciones = Screen.resolutions;
         recargarResoluciones();
         ReloadVelosidadAnimacionText();
+        RevisarPantallaCompleta();
+
+        RevisarCalidad();
     }
 
     public void recargarResoluciones()
@@ -164,5 +191,17 @@ public class MenuPrincipalOpciones : MonoBehaviour
             return;
         barraVelocidadAnimacion.value = correcto;
         SetVelosidadAnimacionText(segundosChecar);
+    }
+
+    public void RevisarPantallaCompleta()
+    {
+        if (checkBoxPantallaCompleta == null)
+            return;
+        checkBoxPantallaCompleta.isOn = Screen.fullScreen;
+    }
+
+    public void RevisarCalidad()
+    {
+
     }
 }

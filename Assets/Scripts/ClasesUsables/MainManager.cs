@@ -18,7 +18,6 @@ public class MainManager : MonoBehaviour
         }
 
         MiliSegundoEsperaGlobal = PlayerPrefs.GetInt("MiliSegundoEsperaGlobal");
-
         ManagerInstancia = this;
         DontDestroyOnLoad(gameObject);
     }
