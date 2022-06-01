@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /*
-* script que se encarga de manejar las opciones que aparese en otras pantallas
+* script que se encarga de manejar las opciones que aparece en otras pantallas
 * esta sujeto a cambios
 */
 

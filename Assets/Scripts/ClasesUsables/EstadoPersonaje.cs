@@ -8,16 +8,16 @@ using UnityEngine;
 * si esta en espera a que el usuario ponga play, si esta apunto de animar una palabra,
 * si esta deletreando o animando completo y otros mas.
 * En la forma en que funciona esto es que esta clase es creada en el script de reproductor
-* de seña y esta clase llama a la funcion "handleInput" en el Update del programa, esta funcion
-* revisa algun parametro o tiempo en la que este el personaje en pantalla y regresa el estado que
-* deveria estar al detectar algo, si no detecta nada se regresa a si mismo, si dectecta algo 
+* de seña y esta clase llama a la función "handleInput" en el Update del programa, esta función
+* revisa algún parámetro o tiempo en la que este el personaje en pantalla y regresa el estado que
+* debería estar al detectar algo, si no detecta nada se regresa a si mismo, si detecta algo 
 * regresa el siguiente estado que deseamos estar.
 * los estados que tenemos son:
-*   EnEspera -> espera a que el valor de "continuo" sea verdadero para empezar la reporduccion
-*   Deletreo -> almacena la palabra en reproduccion y recorre cada letra para deletrearlo en pantalla,
-*               tambien tiene que esperar a que la reproduccion acabe (tambien tiene un tiempo de espera
-*               para lasiguiente animacion de deletreo).
-*   EjecutandoAnimacion -> guarda la palabra y ejecuta la animacion de la palabra. esta sujeto a cambios.
+*   EnEspera -> espera a que el valor de "continuo" sea verdadero para empezar la reporducción
+*   Deletreo -> almacena la palabra en reproducción y recorre cada letra para deletrearlo en pantalla,
+*               también tiene que esperar a que la reproducción acabe (también tiene un tiempo de espera
+*               para la siguiente animación de deletreo).
+*   EjecutandoAnimacion -> guarda la palabra y ejecuta la animación de la palabra. esta sujeto a cambios.
 */
 public class EstadoAtualPersonaje
 {
@@ -43,6 +43,7 @@ public class EstadoAtualPersonaje
 
 public class EstadoEnEspera : EstadoAtualPersonaje
 {
+    private bool puroDeletreo = true;
     public EstadoEnEspera() { }
 
     public EstadoEnEspera(ReproductorSenhas suInstancia)
@@ -66,7 +67,7 @@ public class EstadoEnEspera : EstadoAtualPersonaje
          * 2.- revisar si lo tenemos definido
          */
         Palabra actual = this.instancia.ObtenerPalabraActual();
-        if (actual.tipo == 1)
+        if (actual.tipo == 1 && !puroDeletreo)
             return new EstadoEjecutandoAnimacion(this.instancia, actual.texto, 0);
         return new EstadoDeletreo(this.instancia, actual.texto);
     }
@@ -151,7 +152,7 @@ public class EstadoDeletreo : EstadoAtualPersonaje
             respuesta = 9;
         if (letra == 'ó' || letra == 'Ó')
             respuesta = 15;
-        if (letra == 'u' || letra == 'Ú')
+        if (letra == 'ú' || letra == 'Ú')
             respuesta = 21;
         return respuesta;
     }
@@ -178,6 +179,8 @@ public class EstadoEjecutandoAnimacion : EstadoAtualPersonaje
 {
     private string palabra;
     private int idAnimacion;
+    private int     milisegundos;
+    private float   retraso;
 
     public EstadoEjecutandoAnimacion(ReproductorSenhas suInstancia) : base(suInstancia)
     {
@@ -189,10 +192,30 @@ public class EstadoEjecutandoAnimacion : EstadoAtualPersonaje
     {
         this.palabra = palabraSent;
         this.idAnimacion = numero;
+        milisegundos = suInstancia.miliSegundoEspera;
+        retraso = 0f;
+        suInstancia.MostrarAnimacionPalabra(numero);
     }
 
     public override EstadoAtualPersonaje handleInput()
     {
+        float estado = instancia.EstaEnAnimacion();
+        bool enTrancicion = instancia.EnTrancicion();
+        if ( 
+            estado>1 &&
+            retraso < 1f &&
+            !enTrancicion
+            )
+        {
+            return new EstadoEnEspera(instancia);
+        }
+        if(
+            estado > 1 &&
+            retraso > 0
+            )
+        {
+            retraso = retraso - (Time.deltaTime * 1_000);
+        }
         return this;
     }
 }

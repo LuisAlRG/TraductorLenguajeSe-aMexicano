@@ -4,7 +4,7 @@ using UnityEngine;
 
 /*
 * Clase que funciona para guardar que tipo de palabra se esta usando 
-* (si es conocida y tenemos su animacion), tiene la palaba en string y 
+* (si es conocida y tenemos su animación), tiene la palabra en string y 
 * un int que indica si lo conocemos o no
 * esta sujeto a cambios.
 */

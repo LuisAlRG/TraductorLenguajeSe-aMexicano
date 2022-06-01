@@ -8,14 +8,14 @@ using AnotherFileBrowser.Windows;
 using TMPro;
 
 /*
-* script que se encarga de analisar el texto de un archivo Cargado.
-* Basicamente se encarga de lo mismo que el script de "AnalizadorPalabra"
+* script que se encarga de analizar el texto de un archivo Cargado.
+* Básicamente se encarga de lo mismo que el script de "AnalizadorPalabra"
 * pero tiene unas cosas extras:
-*   Tiene otra manera de limpiar el texto (considera salto de linea y giones).
+*   Tiene otra manera de limpiar el texto (considera salto de linea y guiones).
 *   La posibilidad de cargar archivos de windows.
-* Cosas que se le podria agregar:
-*   Invetigando un poco los atces de abrir archivos, seria conseguir 
-*       una manera de ver que funcione con otros sistrmas operativos.
+* Cosas que se le podría agregar:
+*   Investigando un poco los scripts de abrir archivos, seria conseguir 
+*       una manera de ver que funcione con otros sistemas operativos.
 */
 
 public class AnalizadorPalabrasArchivos : AnalizadorPalabras
@@ -106,7 +106,7 @@ public class AnalizadorPalabrasArchivos : AnalizadorPalabras
         string[] palabrasSeparadas;
         palabrasSeparadas = SepararPalabras(respuesta);
         DesplegarPalabras(palabrasSeparadas);
-        reproductor.RecivirPalabrasEncontradas(palabrasSeparadas, EnDixionario(palabrasSeparadas));
+        reproductor.RecivirPalabrasEncontradas(palabrasSeparadas, EnDiccionario(palabrasSeparadas));
     }
 
     protected override void DesplegarPalabras(string[] palabras)

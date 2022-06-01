@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Script que mantiene parámetros de uso global.
+ */
 public class MainManager : MonoBehaviour
 {
     public static MainManager ManagerInstancia;

@@ -7,33 +7,34 @@ using UnityEngine.UI;
 using TMPro;
 
 /*
-* script que se encarga de manejar las opciones que aparese en la pantalla principal del programa
-* esta sujeto a cambios
+* script que se encarga de manejar las opciones que aparece 
+* en la pantalla principal del programa.
+* Esta sujeto a cambios
 */
 
 
 
 public class MenuPrincipalOpciones : MonoBehaviour
 {
-    /* Valores que se definen en la pantalla de edicion
-     * de unity de los cualos son componentes
+    /* Valores que se definen en la pantalla de edición
+     * de Unity de los cuales son componentes
      * ---
      * Variables                Objetivo
-     * audioMixer               Ete es una referencia para la musica o 
+     * audioMixer               Este es una referencia para la música o 
                                 sonido de fondo, no hay ninguno por 
-                                ahora pero por si acaso esta el metodo 
+                                ahora pero por si acaso esta el método 
                                 de subir volumen.
      * opcionesDeResoluciones   Elemento "drop down" que tiene las resoluciones
                                 lo requerimos para poder sacar las posibles
                                 resoluciones del programa en la computadora.
      * velocidadAnimacionText   Texto que muestra el valor de segundos de la
                                 variable velocidad de retraso.
-     * barraVelocidadAnimacion  Varra que funciona para darle valor a la variable
+     * barraVelocidadAnimacion  Barra que funciona para darle valor a la variable
                                 velocidad de retraso.
      * checkBoxPantallaCompleta Variable que se usa para cambiar el estado de check
                                 de la pantalla completa.
      * resoluciones             Esta variable guarda la posibles resoluciones y puede
-                                usarse para decirle que resolucion queremos.
+                                usarse para decirle que resolución queremos.
      *
      *
      */
@@ -43,7 +44,8 @@ public class MenuPrincipalOpciones : MonoBehaviour
     [SerializeField] private Scrollbar barraVelocidadAnimacion;
     [SerializeField] private Toggle checkBoxPantallaCompleta;
     
-    // Esta variable guarda la posibles resoluciones y usarse para decirle que resolucion queremos.
+    // Esta variable guarda la posibles resoluciones y 
+    // usarse para decirle que resolucion queremos.
     private Resolution[] resoluciones;
     private int calidadIndex = 0;
     private bool quiereFullScreen = false;

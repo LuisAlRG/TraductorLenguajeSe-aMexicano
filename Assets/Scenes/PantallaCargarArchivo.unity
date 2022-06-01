@@ -756,8 +756,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 150.27632, y: 0}
-  m_SizeDelta: {x: 300.55264, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &523828959
 MonoBehaviour:
@@ -1804,7 +1804,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Name space
+  m_text: Espacio de texto
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 76e5dbe1ff6404c478e2e5533a02c3b3, type: 2}
   m_sharedMaterial: {fileID: 7845817619737625200, guid: 76e5dbe1ff6404c478e2e5533a02c3b3, type: 2}
@@ -2356,6 +2356,7 @@ MonoBehaviour:
   opcionesDeResoluciones: {fileID: 0}
   velocidadAnimacionText: {fileID: 123175214}
   barraVelocidadAnimacion: {fileID: 470129314}
+  checkBoxPantallaCompleta: {fileID: 0}
   panelMenu: {fileID: 1568825315}
 --- !u!1 &1991921836
 GameObject:
@@ -2838,6 +2839,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a6020486a19b1445826aab53626f190, type: 3}
+--- !u!1 &2913770737792933201 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2913770736427303181, guid: 5a6020486a19b1445826aab53626f190, type: 3}
+  m_PrefabInstance: {fileID: 2913770737792933200}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2913770737792933202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2913770737792933201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81059ac40a868d44e991a30f31f5c87e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8699182001746053186
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3317,6 +3335,10 @@ PrefabInstance:
     - target: {fileID: 3957116714335705019, guid: 1f7f610564d150747b31cd7566031f4e, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788118963487585978, guid: 1f7f610564d150747b31cd7566031f4e, type: 3}
+      propertyPath: m_text
+      value: Cargue un archivo o introduzca texto...
       objectReference: {fileID: 0}
     - target: {fileID: 7637917322350916377, guid: 1f7f610564d150747b31cd7566031f4e, type: 3}
       propertyPath: m_AnchorMax.y

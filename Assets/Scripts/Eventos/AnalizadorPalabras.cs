@@ -7,34 +7,34 @@ using UnityEngine.UI;
 using TMPro;
 
 /*
-* script que se encarga de analisar el texto ingresado en el input
-* basicamente se encarga de:
-*   limpiar el texto que recive a caracteres que esperamos tener
+* script que se encarga de analizar el texto ingresado en el input
+* básicamente se encarga de:
+*   limpiar el texto que recibe a caracteres que esperamos tener
 *   separar cada palabra en su propio nodo
-*   identificar si alguna palabra esta en el dixionario de conocidos 
-*       (esto significa que, si tenemos una animacion para la palabra 
-*        para que en vez de deletrearlo en señas sea reconosible para una sola palabra)
+*   identificar si alguna palabra esta en el diccionario de conocidos 
+*       (esto significa que, si tenemos una animación para la palabra 
+*        para que en vez de deletrearlo en señas sea reconocible para una sola palabra)
 *   enviar el listado de palabra para ser usado en el programa
-* Cosas que se le podria agregar:
+* Cosas que se le podría agregar:
 *   posibilidad de identificar frases con espacios
-*   una opcion que exija solo parabras conosidas o que todo sea para deletreo
+*   una opción que exija solo palabras conocidas o que todo sea para deletreo
 */
 
 public class AnalizadorPalabras : MonoBehaviour
 {
     /* Valores que se definen en la pantalla de
-     * edicion de unity de los cuales son componentes
+     * edición de Unity de los cuales son componentes
      * ---
      * variable                 Objetivo
      * textoInput               Es el cuadro de texto (Input) que contiene el 
                                 escrito que se desea traducir.
      * listaPalabrasEncontradas Este no es una lista sino un componente script 
-                                que controla lo fisico del listado de nodos.
+                                que controla lo físico del listado de nodos.
      * reproductor              Funciona como referencia del reproductor del 
-                                personaje y basicamente de aqui se manda las 
+                                personaje y básicamente de aquí se manda las 
                                 palabras que deseamos ser animados.
      * enDixionario             Lista de texto que funciona para definir las 
-                                palabras conocida que tiene animacion
+                                palabras conocida que tiene animación
      */
     [SerializeField] private TMP_InputField textoInput;
     [SerializeField] private ListaANodo listaPalabrasEncontradas;
@@ -79,10 +79,10 @@ public class AnalizadorPalabras : MonoBehaviour
             TextoEjemplo("aba bab");
     }
 
-    /* algoritmo general de este metodo
+    /* algoritmo general de este método
      * se guarda el input que este en el texto
      * se limpia el dicho texto
-     * se separan las palabras guardandolo en un array
+     * se separan las palabras guardándolo en un array
      * se despliega para verlas en pantalla
      * enviar las palabras al reproductor
      */
@@ -94,7 +94,7 @@ public class AnalizadorPalabras : MonoBehaviour
         string[] palabrasSeparadas;
         palabrasSeparadas = SepararPalabras(respuesta);
         DesplegarPalabras(palabrasSeparadas);
-        reproductor.RecivirPalabrasEncontradas(palabrasSeparadas, EnDixionario(palabrasSeparadas));
+        reproductor.RecivirPalabrasEncontradas(palabrasSeparadas, EnDiccionario(palabrasSeparadas));
     }
 
     //quitar elementos que no consideramos para el analizador
@@ -119,7 +119,7 @@ public class AnalizadorPalabras : MonoBehaviour
         return textoCompleto.Split(new char[] { ' ' }, System.StringSplitOptions.RemoveEmptyEntries);
     }
 
-    protected int[] EnDixionario(string[] palabras)
+    protected int[] EnDiccionario(string[] palabras)
     {
         if(palabras == null)
             return new int[0];
@@ -142,7 +142,7 @@ public class AnalizadorPalabras : MonoBehaviour
     {
         if (listaPalabrasEncontradas == null)
             return;
-        listaPalabrasEncontradas.AderirNodos(palabras, EnDixionario(palabras));
+        listaPalabrasEncontradas.AderirNodos(palabras, EnDiccionario(palabras));
     }
 
     private void MostrarAbecedario()

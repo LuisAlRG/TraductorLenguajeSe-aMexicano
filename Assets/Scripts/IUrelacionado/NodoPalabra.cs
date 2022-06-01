@@ -9,8 +9,8 @@ using UnityEngine.Events;
 /*
 * Script que se encarga de mostrar el elemento palabra del programa
 * para ser visible en la pantalla y tener algunas funciones con la 
-* interaccion con el raton de la computadora.
-* Tiene una referencia del elemento que engrupa todo los Nodos.
+* interacción con el ratón de la computadora.
+* Tiene una referencia del elemento que agrupa todo los Nodos.
 */
 
 [RequireComponent(typeof(Image))]

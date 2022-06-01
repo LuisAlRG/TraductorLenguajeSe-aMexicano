@@ -3861,7 +3861,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Name space
+  m_text: Espacio de texto
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 76e5dbe1ff6404c478e2e5533a02c3b3, type: 2}
   m_sharedMaterial: {fileID: 7845817619737625200, guid: 76e5dbe1ff6404c478e2e5533a02c3b3, type: 2}
@@ -3904,7 +3904,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}

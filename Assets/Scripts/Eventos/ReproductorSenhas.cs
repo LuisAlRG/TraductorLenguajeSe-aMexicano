@@ -6,29 +6,29 @@ using TMPro;
 
 /*
 * Script que se encarga de manejar el animador del personaje en pantalla
-* basicamente se encarga de mantener el estado del personaje y dependiendo de
-* la accion del usuario en los botones de reproduccion envia las señales de 
-* reproducir las animaciones y manejar el objeto "Animator" para realisar la
-* accion correspondiente
-* Por decirlo asi, es el encargado de comunicarse el estado del personaje con lo
+* básicamente se encarga de mantener el estado del personaje y dependiendo de
+* la accion del usuario en los botones de reproducción enviá las señales de 
+* reproducir las animaciones y manejar el objeto "Animator" para realizar la
+* acción correspondiente
+* Por decirlo así, es el encargado de comunicarse el estado del personaje con lo
 * que se ve en pantalla.
 */
 
 public class ReproductorSenhas : MonoBehaviour
 {
-    /* Estos valores son los que se definen en la pantalla de edicion de uniti 
+    /* Estos valores son los que se definen en la pantalla de edición de Unity 
      * de los cuales son componentes
      * ----------------------------------------------------------------------------
      * Variable             Objetivo
      * suAnimador           Es el controlados de animador del personaje 3D 
-     *                          definido por unity
+     *                          definido por Unity
      * salidaNombreAnimador Es un cuadro de texto (TextMeshPro) el cual muestra 
-     *                          el nmbre de la animacion en ejecucion
+     *                          el nombre de la animación en ejecución
      * listadoMostrable     Esto muestra las palabras encontrada en una lista 
      *                          horizontal encontrado en la pantalla del programa, 
      *                          se usa esta variable para hacer cambios a su aspecto
      * botonesReproduccion  Este elemento hace referencia al componente en pantalla 
-     *                          que muestra los botones de reproduccion, se usa la 
+     *                          que muestra los botones de reproducción, se usa la 
      *                          variable para hacer cambio de aspecto
      */
     [SerializeField] private Animator suAnimador;
@@ -39,24 +39,24 @@ public class ReproductorSenhas : MonoBehaviour
     //esta variable sirbe para definir cuantos mili segundos hay entre letras al momento de deletrear.
     public int miliSegundoEspera;
 
-    /* Estos valoresson de caracter privado, solo se modifican en su mismo codigo, 
-     * por la razon de que requiero que sus modificaciones esten dado en funciones 
+    /* Estos valores son de carácter privado, solo se modifican en su mismo código, 
+     * por la razón de que requiero que sus modificaciones estén dado en funciones 
      * para poder ser llamadas en otros objetos, para asegurar que no esten vacias y eso.
      * ------------------------------------------------------------------------------
      * Variable             Objetivo
      * suEstado             objeto que define en que estado esta el personaje, importante
-     *                          para definir que hacien hacer en determinado tiempo.
-     * palabrasEncontrados  objeto que define el arreglo (o listado si les parese bien) 
+     *                          para definir que hacer en determinado tiempo.
+     * palabrasEncontrados  objeto que define el arreglo (o listado si les parece bien) 
      *                          de las palabras encontrados en el analizador de Palabras
      *                          tiene 2 campos, el texto de la palabra y su tipo.
      * puntero              valor que define donde se apunta en el arreglo de palabras
-     *                          util para savr en que palabra estamos.
-     * continuoReproduccion valor booleano que nos indica si la reproduccion las palabras 
-     *                          accion es continua
+     *                          útil para saber en que palabra estamos.
+     * continuoReproduccion valor booleano que nos indica si la reproducción las palabras 
+     *                          acción es continua
      *                      -este tiene un "get" el cual permite consultar su valor 
-     *                          publicamente, se llama "continuo"
-     * veccesReproducir     valor que indica que tantas veses se quiere reporudcir un 
-     *                          objeto en especifico (aoun en consideracion)
+     *                          públicamente, se llama "continuo"
+     * veccesReproducir     valor que indica que tantas beses se quiere reproducir un 
+     *                          objeto en especifico (aun en consideración)
      */
     private EstadoAtualPersonaje suEstado;
     private Palabra[] palabrasEncontrados;
@@ -80,6 +80,10 @@ public class ReproductorSenhas : MonoBehaviour
     public void MostrarLetraDeletreo(int numero)
     {
         suAnimador.SetInteger("NumeroLetra", numero);
+    }
+
+    public void MostrarAnimacionPalabra(int numero){
+        suAnimador.SetInteger("NumeroPalabra", numero);
     }
 
     public void DetenerDeletreo()
@@ -170,7 +174,8 @@ public class ReproductorSenhas : MonoBehaviour
     {
         if (salidaNombreAnimador == null)
             return;
-        salidaNombreAnimador.text = palabra+" / letra: " + letra;
+        //salidaNombreAnimador.text = palabra+" / letra: " + letra;
+        salidaNombreAnimador.text = "Letra: " + letra + " / " + palabra;
     }
 
     public void LimpiarNombreActualAnimacion()

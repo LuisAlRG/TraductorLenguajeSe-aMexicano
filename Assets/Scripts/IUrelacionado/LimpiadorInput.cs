@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /*
-* script que funciona para evitar que siertos caracteres 
+* script que funciona para evitar que ciertos caracteres 
 * sean usado en el recuadro de texto
 */
 

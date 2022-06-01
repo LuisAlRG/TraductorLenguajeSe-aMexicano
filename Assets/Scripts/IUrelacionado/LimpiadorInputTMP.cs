@@ -6,15 +6,17 @@ using UnityEngine.UI;
 using TMPro;
 
 /*
-* Script que funciona para evitar que siertos caracteres 
-* sean usado en el recuadro de texto, en este casu usando
+* Script que funciona para evitar que ciertos caracteres 
+* sean usado en el recuadro de texto, en este caso usando
 * el input de TMP (Text Mesh Pro) como cuadro de texto.
 */
 
 public class LimpiadorInputTMP : MonoBehaviour
 {
+    //input que requeriremos limpiar
     [SerializeField] TMP_InputField principalInput;
 
+    //que cosas le queremos permitir.
     public bool letras = true;
     public bool numeros = false;
     public bool punto = false;
@@ -49,7 +51,7 @@ public class LimpiadorInputTMP : MonoBehaviour
     {
         string resultado = " ";
         if (letras)
-            resultado += "a-záéíóúA-ZÁÉÍÓÚ";
+            resultado += "a-záéíóúñA-ZÁÉÍÓÚÑ";
         if (numeros)
             resultado += "0-9";
         if (punto)

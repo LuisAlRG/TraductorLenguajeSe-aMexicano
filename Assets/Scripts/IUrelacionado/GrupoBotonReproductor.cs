@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*
-* Script que se encarja de manejar un listado botones de interface
-* que permite interactuar con el reproductor de animacion de nuestro
+* Script que se encarga de manejar un listado botones de interface
+* que permite interactuar con el reproductor de animación de nuestro
 * personaje en pantalla.
-* Basicamente tiene constancia de que boton esta activo y que hacer si
-* se oprime otro boton del mismo conjunto.
+* Básicamente tiene constancia de que botón esta activo y que hacer si
+* se oprime otro botón del mismo conjunto.
 */
 
 public class GrupoBotonReproductor : MonoBehaviour

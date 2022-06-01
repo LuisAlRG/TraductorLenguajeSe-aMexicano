@@ -11,7 +11,7 @@ public class ReproductorAnimacion : MonoBehaviour
      * Variable                 Objetivo
      * animador                 Es el controlador de animador que funciona para que el modelo del personaje se mueva
      * miliSegundos             Tiempo en que deja espacio entre animacion de deletreo
-     * mostrarNombreAnimacion   Espacio para poner el elemento ¨Text¨ de unity para mostrar el nombre de la animacion 
+     * mostrarNombreAnimacion   Espacio para poner el elemento "Text" de unity para mostrar el nombre de la animacion 
      *                          que se esta reproduciendo, no pasa nada si no se define en unity.
      * 
      */
@@ -213,7 +213,7 @@ public class ReproductorAnimacion : MonoBehaviour
      * en esta ocasion al crearse se guarda la palabra que se quiera deletrear, se incia el puntero a cero
      * y empieza a comodar la animacion de deletreo al personaje.
      * por lo general espera a que la animacion termine de ocurrir para luego activar lasiguiente palabra
-     * (con un pequeño retraso definido en el objeto ReproductorAnimacion)
+     * (con un pequeï¿½o retraso definido en el objeto ReproductorAnimacion)
      * el retraso se aplica despues de animar.
      * una vez que se acaba la animacion y el retraso se aumenta el puntero para la siguiente letra
      * si el puntero llega al final se regresa al estado de espera
@@ -264,7 +264,7 @@ public class ReproductorAnimacion : MonoBehaviour
         public int ObtenerNumeroLetra(char letra)
         {
             int respuesta = 0;
-            if (letra == 'ñ' || letra == 'Ñ')
+            if (letra == 'ï¿½' || letra == 'ï¿½')
                 respuesta = 27;
             else if (letra >= 'a' && letra <= 'z')
                 respuesta = letra - 'a' + 1;

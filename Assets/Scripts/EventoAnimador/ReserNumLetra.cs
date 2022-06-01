@@ -4,7 +4,7 @@ using UnityEngine;
 
 /*
 * Script para regresar el valor de NumeroLetra a cero para que no este en 
-* loop con la misma animacion.
+* loop con la misma animación.
 */
 
 public class ReserNumLetra : StateMachineBehaviour

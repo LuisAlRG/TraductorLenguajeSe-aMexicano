@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-/* Codigo sacado de una consulta de stack overflow
+/* C√≥digo sacado de una consulta de stack overflow
  * de un repositorio git
  * autor original: Umair M
  * nombre de usuario: umaqs 
@@ -11,7 +11,7 @@ using UnityEngine.UI;
  *		21 / Abril / 2022
  * fecha de ultima actualizacion 
  *		12 / Diciembre / 2017
- *	link del codigo origuinal—
+ *	link del codigo origuinal:
  *		https://github.com/umaqs/Unity-Extensions/blob/master/FlowLayoutGroup/FlowLayoutGroup.cs
  */
 
@@ -83,7 +83,7 @@ public class FlowLayoutGroup : LayoutGroup
 	/*
 	 * Script agregado por Luis Alfonso ROdriguez Gonzalez, 
 	 * arreglando el problema de contar mal el conteo de los renglones
-	 * ahora si cuenta la cantidad correcta, siempre y cuando el tamaÒo
+	 * ahora si cuenta la cantidad correcta, siempre y cuando el tama√±o
 	 * de todo los elementos hijos sean el mismo
 	 */
 	public void MegoradCalculoLayoutVertical()
