@@ -20,6 +20,8 @@ using TMPro;
 *   una opción que exija solo palabras conocidas o que todo sea para deletreo
 */
 
+
+
 public class AnalizadorPalabras : MonoBehaviour
 {
     /* Valores que se definen en la pantalla de
@@ -40,7 +42,7 @@ public class AnalizadorPalabras : MonoBehaviour
     [SerializeField] private ListaANodo listaPalabrasEncontradas;
     [SerializeField] protected ReproductorSenhas reproductor;
 
-    public List<string> enDixionario;
+    public List<string> enDiccionario;
     
     //elemento publico de input para poder sacar el texto del elemento.
     public string valueInputIn
@@ -93,8 +95,22 @@ public class AnalizadorPalabras : MonoBehaviour
         respuesta = LipiarTexto(respuesta);
         string[] palabrasSeparadas;
         palabrasSeparadas = SepararPalabras(respuesta);
+
         DesplegarPalabras(palabrasSeparadas);
         reproductor.RecivirPalabrasEncontradas(palabrasSeparadas, EnDiccionario(palabrasSeparadas));
+    }
+
+    //Una idea de mejora es que en ves de generar 2 listas array para la palabra y saver si es conocido seria mejor
+    //de una vez generar el elemento Palabra y pasarlo directamente al analisador como tal y su id.
+    public void AnalizarTextoExtra(){
+        string respuesta;
+        respuesta = valueInputIn;
+        respuesta = LipiarTexto(respuesta);
+        string[] palabrasSeparadas;
+        palabrasSeparadas = SepararPalabras(respuesta);
+        Palabra[] palabrasPreparadas = PrepararPalabras(palabrasSeparadas);
+        DesplegarPalabras(palabrasPreparadas);
+        EnviarAciaRerpoductor(palabrasPreparadas);
     }
 
     //quitar elementos que no consideramos para el analizador
@@ -131,11 +147,40 @@ public class AnalizadorPalabras : MonoBehaviour
         return resultado;
     }
 
+    protected Palabra[] PrepararPalabras(string[] palabras){
+        if(palabras == null)
+            return new Palabra[0];
+        Palabra[] resultado = new Palabra[palabras.Length];
+        for(int i = 0; palabras.Length > i; i++)
+        {
+            int[] checaDiccionario = palabraEnDiccionario(palabras[i]);
+            resultado[i] = new Palabra(palabras[i],checaDiccionario[0],checaDiccionario[1]);
+        }
+        return resultado;
+    }
+
     private bool palabraEnDixionario(string palabra)
     {
-        if (enDixionario == null)
+        if (enDiccionario == null)
             return false;
-        return enDixionario.Contains(palabra.ToUpper());
+        return enDiccionario.Contains(palabra.ToUpper());
+    }
+
+    private int[] palabraEnDiccionario(string palabra)
+    {
+        int[] resultado = new int[] {1,-1};
+        /*if (enDiccionario == null)
+            return resultado;*/
+        foreach (string pD in enDiccionario){
+            string[] separado = pD.Split('|');
+            //deve estar sparado por la palabra y su id
+            //<palabra>|<id>
+            if(separado.Length < 2)
+                continue;
+            if (separado[0].ToUpper().Contains(palabra.ToUpper()))
+                resultado = new int[] {2,int.Parse(separado[1])};
+        }
+        return resultado;
     }
 
     virtual protected void DesplegarPalabras(string[] palabras)
@@ -143,6 +188,18 @@ public class AnalizadorPalabras : MonoBehaviour
         if (listaPalabrasEncontradas == null)
             return;
         listaPalabrasEncontradas.AderirNodos(palabras, EnDiccionario(palabras));
+    }
+
+    virtual protected void DesplegarPalabras(Palabra[] palabras){
+        if (listaPalabrasEncontradas == null)
+            return;
+        listaPalabrasEncontradas.AderirNodos(palabras);
+    }
+
+    virtual protected void EnviarAciaRerpoductor(Palabra[] palabras){
+        if (reproductor == null)
+            return;
+        reproductor.RecivirPalabrasEncontradas(palabras);
     }
 
     private void MostrarAbecedario()

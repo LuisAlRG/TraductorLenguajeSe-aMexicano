@@ -77,6 +77,13 @@ public class ReproductorSenhas : MonoBehaviour
         suAnimador.SetBool("Deletreo", true);
     }
 
+    public void PrepararParaPalabra(){
+         if (suAnimador == null)
+            return;
+        suAnimador.SetInteger("NumeroPalabra", 0);
+        suAnimador.SetBool("Palabra", true);
+    }
+
     public void MostrarLetraDeletreo(int numero)
     {
         suAnimador.SetInteger("NumeroLetra", numero);
@@ -92,6 +99,13 @@ public class ReproductorSenhas : MonoBehaviour
             return;
         suAnimador.SetInteger("NumeroLetra", 0);
         suAnimador.SetBool("Deletreo", false);
+    }
+    public void DetenerPalabra()
+    {
+        if (suAnimador == null)
+            return;
+        suAnimador.SetInteger("NumeroPalabra", 0);
+        suAnimador.SetBool("Palabra", false);
     }
 
     public float EstaEnAnimacion()
@@ -123,6 +137,17 @@ public class ReproductorSenhas : MonoBehaviour
                 tipo = tipos[i];
             palabrasEncontrados[i] = new Palabra(texto,tipo);
         }
+        suEstado = new EstadoEnEspera(this);
+        puntero = 0;
+    }
+
+    public void RecivirPalabrasEncontradas(Palabra[] palabras)
+    {
+        if (palabras == null)
+            return;
+        if (palabras.Length == 0)
+            return;
+        palabrasEncontrados = palabras;
         suEstado = new EstadoEnEspera(this);
         puntero = 0;
     }
@@ -163,11 +188,11 @@ public class ReproductorSenhas : MonoBehaviour
         return false;
     }
 
-    public void MostrarLetraActual(char letra)
+    public void MostrarPalabraActual(string palabra)
     {
         if (salidaNombreAnimador == null)
             return;
-        salidaNombreAnimador.text = "Deletreado: " + letra;
+        salidaNombreAnimador.text = "Seña de: " + palabra;
     }
 
     public void MostrarLetraActual(string palabra, char letra)
@@ -182,7 +207,7 @@ public class ReproductorSenhas : MonoBehaviour
     {
         if (salidaNombreAnimador == null)
             return;
-        salidaNombreAnimador.text = "Name Space";
+        salidaNombreAnimador.text = "---";
     }
 
     public void MoverSiguientePalabra()

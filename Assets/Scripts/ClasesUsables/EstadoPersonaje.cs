@@ -194,7 +194,9 @@ public class EstadoEjecutandoAnimacion : EstadoAtualPersonaje
         this.idAnimacion = numero;
         milisegundos = suInstancia.miliSegundoEspera;
         retraso = 0f;
+        suInstancia.PrepararParaDeletreo();
         suInstancia.MostrarAnimacionPalabra(numero);
+        instancia.MostrarPalabraActual(palabraSent);
     }
 
     public override EstadoAtualPersonaje handleInput()
@@ -207,6 +209,8 @@ public class EstadoEjecutandoAnimacion : EstadoAtualPersonaje
             !enTrancicion
             )
         {
+            instancia.DetenerPalabra();
+            instancia.LimpiarNombreActualAnimacion();
             return new EstadoEnEspera(instancia);
         }
         if(

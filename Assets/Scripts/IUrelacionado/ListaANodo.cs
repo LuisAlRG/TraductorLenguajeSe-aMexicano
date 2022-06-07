@@ -66,6 +66,42 @@ public class ListaANodo : MonoBehaviour
         Canvas.ForceUpdateCanvases();
     }
 
+    public void AderirNodos (Palabra[] palabras){
+        if (nodoSeleccionado != null)
+            nodoSeleccionado = null;
+        if(listaNodos != null)
+            listaNodos.Clear();
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        palabrasEncontrados = new string[palabras.Length];
+        for(int i=0; palabras.Length > i ; i++){
+            palabrasEncontrados[i] = palabras[i].texto;
+
+            NodoPalabra modificable = NodoPrefap.GetComponent<NodoPalabra>();
+            modificable.ValueText = palabras[i].texto;
+            GameObject nuevoObjeto =  Instantiate(NodoPrefap, transform);
+            NodoPalabra suNodo = nuevoObjeto.GetComponent<NodoPalabra>();
+            suNodo.Padre = this;
+            //suNodo.ValueText = palabras[i];
+            suNodo.Tipo = palabras[i].tipo;
+            suNodo.Puntero = i;
+            if (i == 0)
+            {
+                suNodo.ToggleSelected();
+                nodoSeleccionado = suNodo;
+            }
+            suNodo.SetColors(
+                new Color[] { colorDeBase, colorConocido, colorDesconocido },
+                new Color[] {Color.black, Color.white, Color.white}
+                );
+            listaNodos.Add(suNodo);
+            nuevoObjeto.transform.SetParent(gameObject.transform, false);
+        }
+        Canvas.ForceUpdateCanvases();
+    }
     public void MoverSiguientePalabra()
     {
         if (nodoSeleccionado == null)

@@ -13,6 +13,7 @@ public class Palabra
 {
     public string texto;
     public int tipo;
+    public int id = 0;
 
     public Palabra()
     {
@@ -28,5 +29,12 @@ public class Palabra
     {
         this.texto  = palabra;
         this.tipo   = suTipo;
+    }
+
+    public Palabra(string palabra, int suTipo, int suId)
+    {
+        this.texto = palabra;
+        this.tipo = suTipo;
+        this.id = suId;
     }
 }
