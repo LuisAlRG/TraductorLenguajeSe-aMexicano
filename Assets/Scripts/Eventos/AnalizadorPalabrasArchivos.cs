@@ -20,8 +20,11 @@ using TMPro;
 
 public class AnalizadorPalabrasArchivos : AnalizadorPalabras
 {
+    //Variable que guarda el texto total encontrado en el archivo 
+    //O en otros casos, el mismo texto de la pantalla al aplicar el procesar.
     private string textoEnCuestion = "";
 
+    //evento que llama el explorador de archivo y lo analisa
     public void OnLeerArchivo()
     {
         LeerArchivo();
@@ -30,6 +33,7 @@ public class AnalizadorPalabrasArchivos : AnalizadorPalabras
         AnalizarTexto();
     }
 
+    //evento que agarra o que este en el cuadro de texto y lo analisa
     public void OnProcesarTexto()
     {
         if(valueInputIn != "")
@@ -40,6 +44,12 @@ public class AnalizadorPalabrasArchivos : AnalizadorPalabras
     }
 
     //Metodo de leer archivo con ayuda de las clases y pluging de abrir archivo
+    /* 1.- se crea las propiedades del explorador de windows
+     * 2.- ejecuta la orden de abrir el explorador y espera a que se cumpla la seleccion.
+     *  2.s se guarda  en la variable de "textoEnCuestion" 
+            agregando algunas cosas que mejora un poco la lectura del texto
+     * 3.- mostrar el texto que este cargado
+     */
     private void LeerArchivo()
     {
         BrowserProperties vp = new BrowserProperties()
@@ -98,7 +108,7 @@ public class AnalizadorPalabrasArchivos : AnalizadorPalabras
     }
 
 
-    protected override void AnalizarTexto()
+    protected override void AnalizarTexto01()
     {
         string respuesta;
         respuesta = textoEnCuestion;
@@ -107,6 +117,17 @@ public class AnalizadorPalabrasArchivos : AnalizadorPalabras
         palabrasSeparadas = SepararPalabras(respuesta);
         DesplegarPalabras(palabrasSeparadas);
         reproductor.RecivirPalabrasEncontradas(palabrasSeparadas, EnDiccionario(palabrasSeparadas));
+    }
+
+    protected override void AnalizarTexto/*Extra*/(){
+        string respuesta;
+        respuesta = valueInputIn;
+        respuesta = LipiarTexto(respuesta);
+        string[] palabrasSeparadas;
+        palabrasSeparadas = SepararPalabras(respuesta);
+        Palabra[] palabrasPreparadas = PrepararPalabras(palabrasSeparadas);
+        DesplegarPalabras(palabrasPreparadas);
+        EnviarAciaRerpoductor(palabrasPreparadas);
     }
 
     protected override void DesplegarPalabras(string[] palabras)

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*elemento no usado*/
+/*elemento no usado queriamos probar algo*/
 public struct PalabraDiccionario
 {
     public PalabraDiccionario(string palabra, int id)

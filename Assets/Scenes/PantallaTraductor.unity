@@ -2068,7 +2068,7 @@ MonoBehaviour:
   textoInput: {fileID: 1612781481}
   listaPalabrasEncontradas: {fileID: 2797020441418331241}
   reproductor: {fileID: 78504024}
-  enDixionario: []
+  enDiccionario: []
 --- !u!114 &2000560695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4145,7 +4145,7 @@ MonoBehaviour:
   - mas
   NodoPrefap: {fileID: 6603513445213906448, guid: ca38e942469208f45a93e41d604db02a, type: 3}
   colorDeBase: {r: 0.92549026, g: 0.94117653, b: 0.9450981, a: 1}
-  colorConocido: {r: 0.20392159, g: 0.59607846, b: 0.8588236, a: 1}
+  colorConocido: {r: 0.08627451, g: 0.627451, b: 0.52156866, a: 1}
   colorDesconocido: {r: 0.16078432, g: 0.5019608, b: 0.7254902, a: 1}
   listaNodos: []
   nodoSeleccionado: {fileID: 0}
@@ -4186,7 +4186,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 352.25, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 22}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &2797020441418331254
@@ -5629,6 +5629,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2504831255834771670, guid: 355bfa3d8f6925b4bb3c1f8d6f408312, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3315664244704807296, guid: 355bfa3d8f6925b4bb3c1f8d6f408312, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -5676,6 +5680,10 @@ PrefabInstance:
     - target: {fileID: 3315664244704807297, guid: 355bfa3d8f6925b4bb3c1f8d6f408312, type: 3}
       propertyPath: m_Name
       value: EsenarioCuarto
+      objectReference: {fileID: 0}
+    - target: {fileID: 3315664245193556837, guid: 355bfa3d8f6925b4bb3c1f8d6f408312, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 355bfa3d8f6925b4bb3c1f8d6f408312, type: 3}

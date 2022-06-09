@@ -46,12 +46,17 @@ public class EstadoEnEspera : EstadoAtualPersonaje
     private bool puroDeletreo = true;
     public EstadoEnEspera() { }
 
-    public EstadoEnEspera(ReproductorSenhas suInstancia)
+    public EstadoEnEspera(ReproductorSenhas suInstancia, bool puroDeletreo = true)
         : base(suInstancia)
     {
-
+        this.puroDeletreo = puroDeletreo;
     }
 
+    /*
+     * 1.- revisar si esta activo el boton de reproduccion
+     *  1.s si esta activo empieza la reproduccion de palabra
+     * 2.- regresar el mismo estado de espera
+     */
     public override EstadoAtualPersonaje handleInput()
     {
         if(instancia.continuo || instancia.ReproducirVeces())
@@ -61,11 +66,14 @@ public class EstadoEnEspera : EstadoAtualPersonaje
         return this;
     }
 
+    /* 1.- consegir la palabra actual
+     * 2.- revisar si lo tenemos definido (o si no lo queremos deletreado)
+     *  2.s si esta definido hace animacion directa de seña (salida 2)
+     * 3.- entra al deletreo (salida 1)
+     */
     public EstadoAtualPersonaje ReproducirPalabra()
     {
-        /* 1.- consegir la palabra actual
-         * 2.- revisar si lo tenemos definido
-         */
+        
         Palabra actual = this.instancia.ObtenerPalabraActual();
         if (actual.tipo == 1 && !puroDeletreo)
             return new EstadoEjecutandoAnimacion(this.instancia, actual.texto, 0);
@@ -75,6 +83,13 @@ public class EstadoEnEspera : EstadoAtualPersonaje
 
 public class EstadoDeletreo : EstadoAtualPersonaje
 {
+    /*variable      Objetivo
+     *palabra       mantiene la palabra entero en string
+     *letraActual   que letra esta apuntando ahora mismo el puntero
+     *puntero       en que letra del estring estamos por ahora
+     *milisegundos  tiempo de espera base (sacado de su propia instancia)
+     *retraso       tiempo de espera que controla cuanto tiempo a pasado
+     */
     private string  palabra;
     private char    letraActual;
     private int     puntero;
@@ -90,6 +105,18 @@ public class EstadoDeletreo : EstadoAtualPersonaje
         retraso = 0f;
         instancia.PrepararParaDeletreo();
     }
+
+    /* 1.- obtiene estado de animacion del personaje
+     * 2.- obtiene si no esta trasicionando a otra animacion
+     * 3.- revisa si esta en medio de animacion y el retraso inpuesto no a acabado
+     *  3.s aplica siguiente paso
+        3.1 revisa si no es final de palabra
+         3.1.s detiene los parametros de animacion y sigue con la siguiente palabra
+        3.2 sige con la siguiente letra
+     * 4.- revisa si todavia hay retraso
+     *  4.s reduce el retraso con el tiempo que paso el fotograma
+     * 5.- regresar e mismo estado
+     */
     public override EstadoAtualPersonaje handleInput()
     {
         float estado = instancia.EstaEnAnimacion();
@@ -135,6 +162,7 @@ public class EstadoDeletreo : EstadoAtualPersonaje
         letraActual = palabra[puntero];
     }
 
+    // Combierte la letra a un nupero en especifico al no ser el formato comun
     private int ObtenerNumeroLetra(char letra)
     {
         int respuesta = 0;
@@ -166,9 +194,7 @@ public class EstadoDeletreo : EstadoAtualPersonaje
     private void Proceso()
     {
         ObtenerLetra();
-        //aver algo
         string palabraSeñalada = palabra.Remove(puntero, 1).Insert(puntero, "[" + letraActual + "]");
-
         instancia.MostrarLetraActual(palabraSeñalada, letraActual);
         MostrarLetraAnimacion(ObtenerNumeroLetra(letraActual));
         SiguienteLetra();
@@ -177,8 +203,13 @@ public class EstadoDeletreo : EstadoAtualPersonaje
 
 public class EstadoEjecutandoAnimacion : EstadoAtualPersonaje
 {
-    private string palabra;
-    private int idAnimacion;
+    /*variable      Objetivo
+     *palabra       mantiene la palabra entero en string
+     *milisegundos  tiempo de espera base (sacado de su propia instancia)
+     *retraso       tiempo de espera que controla cuanto tiempo a pasado
+     */
+    private string  palabra;
+    private int     idAnimacion;
     private int     milisegundos;
     private float   retraso;
 
@@ -199,6 +230,15 @@ public class EstadoEjecutandoAnimacion : EstadoAtualPersonaje
         instancia.MostrarPalabraActual(palabraSent);
     }
 
+    /* 1.- obtiene estado de animacion del personaje
+     * 2.- obtiene si no esta trasicionando a otra animacion
+     * 3.- revisa si esta en medio de animacion y el retraso inpuesto no a acabado
+     *  3.s aplica siguiente paso
+        3.1 limpiar animacion y regresar a espera.
+     * 4.- revisa si todavia hay retraso
+     *  4.s reduce el retraso con el tiempo que paso el fotograma
+     * 5.- regresar e mismo estado
+     */
     public override EstadoAtualPersonaje handleInput()
     {
         float estado = instancia.EstaEnAnimacion();
@@ -211,6 +251,8 @@ public class EstadoEjecutandoAnimacion : EstadoAtualPersonaje
         {
             instancia.DetenerPalabra();
             instancia.LimpiarNombreActualAnimacion();
+            if (instancia.continuo)
+                    instancia.MoverSiguientePalabra();
             return new EstadoEnEspera(instancia);
         }
         if(
