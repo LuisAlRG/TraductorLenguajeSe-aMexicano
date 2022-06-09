@@ -61,6 +61,10 @@ public class AnalizadorPalabras : MonoBehaviour
     //  texto para probar ciertos casos, para ver si no hay errores
     private void Update()
     {
+         SuUpdate();
+    }
+
+    virtual protected void SuUpdate(){
         if(
             Input.GetKeyUp(KeyCode.KeypadEnter)||
             Input.GetKeyUp(KeyCode.Return)
@@ -212,7 +216,7 @@ public class AnalizadorPalabras : MonoBehaviour
         reproductor.RecivirPalabrasEncontradas(palabras);
     }
 
-    private void MostrarAbecedarioDactilologico()
+    protected void MostrarAbecedarioDactilologico()
     {
         string abecedario = "abcdefghijklmnñopqrstuvwxyz";
         if (textoInput != null)

@@ -24,6 +24,19 @@ public class AnalizadorPalabrasArchivos : AnalizadorPalabras
     //O en otros casos, el mismo texto de la pantalla al aplicar el procesar.
     private string textoEnCuestion = "";
 
+    protected override void SuUpdate(){
+        if (Input.GetKeyUp(KeyCode.Alpha0))
+            MostrarAbecedarioDactilologico();
+        else if (Input.GetKeyUp(KeyCode.Alpha1))
+            TextoEjemplo("Hola mi nombre es Luis");
+        else if (Input.GetKeyUp(KeyCode.Alpha2))
+            TextoEjemplo("palabras en minusculas PALABRAS EN MAYUSCULAS");
+        else if (Input.GetKeyUp(KeyCode.Alpha3))
+            TextoEjemplo("jkzxñ");
+        else if (Input.GetKeyUp(KeyCode.Alpha4))
+            TextoEjemplo("aba bab");
+    }
+
     //evento que llama el explorador de archivo y lo analisa
     public void OnLeerArchivo()
     {
