@@ -56,7 +56,7 @@ public class ListaANodo : MonoBehaviour
                 nodoSeleccionado = suNodo;
             }
             suNodo.SetColors(
-                new Color[] { colorDeBase, colorConocido, colorDesconocido },
+                new Color[] { colorDeBase, colorDesconocido, colorConocido },
                 new Color[] {Color.black, Color.white, Color.white}
                 );
             listaNodos.Add(suNodo);
@@ -94,7 +94,7 @@ public class ListaANodo : MonoBehaviour
                 nodoSeleccionado = suNodo;
             }
             suNodo.SetColors(
-                new Color[] { colorDeBase, colorConocido, colorDesconocido },
+                new Color[] { colorDeBase, colorDesconocido, colorConocido },
                 new Color[] {Color.black, Color.white, Color.white}
                 );
             listaNodos.Add(suNodo);

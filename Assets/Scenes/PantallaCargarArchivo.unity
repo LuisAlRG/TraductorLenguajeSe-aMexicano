@@ -756,8 +756,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 150.2441, y: 0}
-  m_SizeDelta: {x: 300.4882, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &523828959
 MonoBehaviour:
@@ -808,7 +808,7 @@ MonoBehaviour:
   palabrasEncontrados: []
   NodoPrefap: {fileID: 647750165930548225, guid: c62f9f49586547f429e03fd23bfcb49f, type: 3}
   colorDeBase: {r: 0.92549026, g: 0.94117653, b: 0.9450981, a: 1}
-  colorConocido: {r: 0.20392159, g: 0.59607846, b: 0.8588236, a: 1}
+  colorConocido: {r: 0.08627451, g: 0.627451, b: 0.52156866, a: 1}
   colorDesconocido: {r: 0.16078432, g: 0.5019608, b: 0.7254902, a: 1}
   listaNodos: []
   nodoSeleccionado: {fileID: 0}
@@ -1773,7 +1773,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.50001526, y: 0}
+  m_AnchoredPosition: {x: 0.5, y: 0}
   m_SizeDelta: {x: -9, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1455584384
@@ -2339,7 +2339,8 @@ MonoBehaviour:
   textoInput: {fileID: 8791261585930404085}
   listaPalabrasEncontradas: {fileID: 523828961}
   reproductor: {fileID: 1303748896}
-  enDixionario: []
+  enDiccionario:
+  - hola|7001
 --- !u!114 &1934120055
 MonoBehaviour:
   m_ObjectHideFlags: 0

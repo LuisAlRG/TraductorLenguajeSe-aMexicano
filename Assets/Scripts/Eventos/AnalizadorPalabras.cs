@@ -61,6 +61,10 @@ public class AnalizadorPalabras : MonoBehaviour
     //  texto para probar ciertos casos, para ver si no hay errores
     private void Update()
     {
+         SuUpdate();
+    }
+
+    virtual protected void SuUpdate(){
         if(
             Input.GetKeyUp(KeyCode.KeypadEnter)||
             Input.GetKeyUp(KeyCode.Return)
@@ -70,7 +74,7 @@ public class AnalizadorPalabras : MonoBehaviour
         }
 
         if (Input.GetKeyUp(KeyCode.Alpha0))
-            MostrarAbecedario();
+            MostrarAbecedarioDactilologico();
         else if (Input.GetKeyUp(KeyCode.Alpha1))
             TextoEjemplo("Hola mi nombre es Luis");
         else if (Input.GetKeyUp(KeyCode.Alpha2))
@@ -82,13 +86,13 @@ public class AnalizadorPalabras : MonoBehaviour
     }
 
     /* algoritmo general de este método
-     * se guarda el input que este en el texto
-     * se limpia el dicho texto
-     * se separan las palabras guardándolo en un array
-     * se despliega para verlas en pantalla
-     * enviar las palabras al reproductor
+     * 1.- se guarda el input que este en el texto
+     * 2.- se limpia el dicho texto
+     * 3.- se separan las palabras guardándolo en un array
+     * 4.- se despliega para verlas en pantalla
+     * 5.- enviar las palabras al reproductor
      */
-    virtual protected void AnalizarTexto()
+    virtual protected void AnalizarTexto01()
     {
         string respuesta;
         respuesta = valueInputIn;
@@ -102,7 +106,7 @@ public class AnalizadorPalabras : MonoBehaviour
 
     //Una idea de mejora es que en ves de generar 2 listas array para la palabra y saver si es conocido seria mejor
     //de una vez generar el elemento Palabra y pasarlo directamente al analisador como tal y su id.
-    public void AnalizarTextoExtra(){
+    virtual protected void AnalizarTexto/*Extra*/(){
         string respuesta;
         respuesta = valueInputIn;
         respuesta = LipiarTexto(respuesta);
@@ -169,16 +173,26 @@ public class AnalizadorPalabras : MonoBehaviour
     private int[] palabraEnDiccionario(string palabra)
     {
         int[] resultado = new int[] {1,-1};
-        /*if (enDiccionario == null)
-            return resultado;*/
-        foreach (string pD in enDiccionario){
+        if(MainManager.ManagerInstancia == null)
+            return resultado;
+        if(palabra.Length < 1)
+            return resultado;
+        List<string> diccionarioDeLetra = MainManager.ManagerInstancia.ObtenerDiccionarioLetra(palabra[0]);
+        //Debug.Log(diccionarioDeLetra);
+        if (diccionarioDeLetra == null)
+            return resultado;
+        foreach (string pD in diccionarioDeLetra){
+            //Debug.Log(pD);
             string[] separado = pD.Split('|');
+            //Debug.Log(separado[0]);
+            //Debug.Log(palabra.ToUpper() == separado[0].ToUpper());
+
             //deve estar sparado por la palabra y su id
             //<palabra>|<id>
             if(separado.Length < 2)
                 continue;
-            if (separado[0].ToUpper().Contains(palabra.ToUpper()))
-                resultado = new int[] {2,int.Parse(separado[1])};
+            if (palabra.ToUpper() == separado[0].ToUpper())
+                return new int[] {2,int.Parse(separado[1])};
         }
         return resultado;
     }
@@ -202,7 +216,7 @@ public class AnalizadorPalabras : MonoBehaviour
         reproductor.RecivirPalabrasEncontradas(palabras);
     }
 
-    private void MostrarAbecedario()
+    protected void MostrarAbecedarioDactilologico()
     {
         string abecedario = "abcdefghijklmnñopqrstuvwxyz";
         if (textoInput != null)
