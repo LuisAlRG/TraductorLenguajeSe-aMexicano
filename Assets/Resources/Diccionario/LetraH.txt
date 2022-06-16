@@ -4,4 +4,3 @@ hermano
 hija
 hijastra
 hueso
-hola
