@@ -43,10 +43,10 @@ public class EstadoAtualPersonaje
 
 public class EstadoEnEspera : EstadoAtualPersonaje
 {
-    private bool puroDeletreo = true;
+    private bool puroDeletreo = false;
     public EstadoEnEspera() { }
 
-    public EstadoEnEspera(ReproductorSenhas suInstancia, bool puroDeletreo = true)
+    public EstadoEnEspera(ReproductorSenhas suInstancia, bool puroDeletreo = false)
         : base(suInstancia)
     {
         this.puroDeletreo = puroDeletreo;
@@ -75,8 +75,9 @@ public class EstadoEnEspera : EstadoAtualPersonaje
     {
         
         Palabra actual = this.instancia.ObtenerPalabraActual();
-        if (actual.tipo == 1 && !puroDeletreo)
-            return new EstadoEjecutandoAnimacion(this.instancia, actual.texto, 0);
+        Debug.Log(actual.tipo +":" + puroDeletreo);
+        if (actual.tipo == 2 && !puroDeletreo)
+            return new EstadoEjecutandoAnimacion(this.instancia, actual.texto, actual.id);
         return new EstadoDeletreo(this.instancia, actual.texto);
     }
 }
@@ -224,10 +225,11 @@ public class EstadoEjecutandoAnimacion : EstadoAtualPersonaje
         this.palabra = palabraSent;
         this.idAnimacion = numero;
         milisegundos = suInstancia.miliSegundoEspera;
-        retraso = 0f;
-        suInstancia.PrepararParaDeletreo();
+        retraso = milisegundos;
+        suInstancia.PrepararParaPalabra();
         suInstancia.MostrarAnimacionPalabra(numero);
         instancia.MostrarPalabraActual(palabraSent);
+        Debug.Log(palabraSent+"-id"+numero);
     }
 
     /* 1.- obtiene estado de animacion del personaje
@@ -244,7 +246,7 @@ public class EstadoEjecutandoAnimacion : EstadoAtualPersonaje
         float estado = instancia.EstaEnAnimacion();
         bool enTrancicion = instancia.EnTrancicion();
         if ( 
-            estado>1 &&
+            estado > 1 &&
             retraso < 1f &&
             !enTrancicion
             )

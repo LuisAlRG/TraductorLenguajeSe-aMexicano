@@ -6,12 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/PantallaPrincipal.unity
-    guid: 25808668457e848418b08675e285b678
+    path: Assets/Scenes/PanrallaPrincipalRe.unity
+    guid: 7a110e43477265d4fb8d739b24280205
   - enabled: 1
     path: Assets/Scenes/PantallaTraductor.unity
     guid: 62330126f71175c42bcb070cdc7d8e70
   - enabled: 1
     path: Assets/Scenes/PantallaCargarArchivo.unity
     guid: ab9a755f028ef0541bb8938a96234afb
+  - enabled: 1
+    path: Assets/Scenes/PantallaCreditos.unity
+    guid: 6d6439d1f9ff5124e9e51e6f5f148013
+  - enabled: 0
+    path: Assets/Scenes/PantallaPrincipal.unity
+    guid: 25808668457e848418b08675e285b678
   m_configObjects: {}

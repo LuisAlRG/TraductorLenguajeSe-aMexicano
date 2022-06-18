@@ -307,6 +307,7 @@ public class ReproductorSenhas : MonoBehaviour
         if (interrumpir)
         {
             DetenerDeletreo();
+            DetenerPalabra();
             LimpiarNombreActualAnimacion();
             vecesRepoducir = 0;
             continuoReproduccion = false;

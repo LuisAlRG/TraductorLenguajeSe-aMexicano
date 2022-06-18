@@ -43,6 +43,7 @@ public class MenuPrincipalOpciones : MonoBehaviour
     [SerializeField] private TMP_Text velocidadAnimacionText;
     [SerializeField] private Scrollbar barraVelocidadAnimacion;
     [SerializeField] private Toggle checkBoxPantallaCompleta;
+    [SerializeField] private Toggle checkBoxSaludoInicial;
     
     // Esta variable guarda la posibles resoluciones y 
     // usarse para decirle que resolucion queremos.
@@ -60,6 +61,7 @@ public class MenuPrincipalOpciones : MonoBehaviour
         recargarResoluciones();
         ReloadVelosidadAnimacionText();
         RevisarPantallaCompleta();
+        RevisarAnimacionInicial();
 
         RevisarCalidad();
     }
@@ -79,9 +81,9 @@ public class MenuPrincipalOpciones : MonoBehaviour
             Resolution res = resoluciones[i];
             string opcionInd = res.width + " X " + res.height + " " + res.refreshRate +"Hz";
             textoDeReolocuines.Add(opcionInd);
-            if (res.width == Screen.width &&
-                res.height == Screen.height &&
-                res.refreshRate == Screen.currentResolution.refreshRate
+            if (res.width <= Screen.width &&
+                res.height <= Screen.height &&
+                res.refreshRate <= Screen.currentResolution.refreshRate
                 )
                 resolucionConcurrenteIndex = i;
         }
@@ -108,6 +110,10 @@ public class MenuPrincipalOpciones : MonoBehaviour
     public void OnAbrirTraductorArchivo()
     {
         SceneManager.LoadScene(2, LoadSceneMode.Single);
+    }
+
+    public void OnVerCreditos(){
+        SceneManager.LoadScene(3, LoadSceneMode.Single);
     }
 
     public void OnAplicarOpciones()
@@ -152,6 +158,12 @@ public class MenuPrincipalOpciones : MonoBehaviour
         //Screen.fullScreen = loQuiere;
         quiereFullScreen = loQuiere;
         opcionesModificada = true;
+    }
+
+    public void OnAnimacionSaludoInicial(bool loQuiere){
+        MainManager.SalvarAnimacionSaludoInicial(loQuiere? 1:0);
+        if(MainManager.ManagerInstancia != null)
+            MainManager.ManagerInstancia.SaludoPrincipalAnim = loQuiere;
     }
 
     public void OnCambiarTamanhoPantalla(int index)
@@ -202,6 +214,14 @@ public class MenuPrincipalOpciones : MonoBehaviour
         checkBoxPantallaCompleta.isOn = Screen.fullScreen;
     }
 
+    public void RevisarAnimacionInicial()
+    {
+        if (checkBoxSaludoInicial == null)
+            return;
+        if (MainManager.ManagerInstancia == null)
+            return;
+        checkBoxSaludoInicial.isOn = MainManager.ManagerInstancia.SaludoPrincipalAnim;
+    }
     public void RevisarCalidad()
     {
 
