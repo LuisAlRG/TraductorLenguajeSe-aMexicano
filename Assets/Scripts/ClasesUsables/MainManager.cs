@@ -12,6 +12,7 @@ public class MainManager : MonoBehaviour
     //Datos que quiero pasar
     public int MiliSegundoEsperaGlobal = 800;
     public List<string>[] MegaDiccionario;  
+    public bool SoloDeletreoOpt = false;
     public bool SaludoPrincipalAnim = true;
 
     private void Awake()
@@ -24,6 +25,7 @@ public class MainManager : MonoBehaviour
 
         MiliSegundoEsperaGlobal = PlayerPrefs.GetInt("MiliSegundoEsperaGlobal");
         SaludoPrincipalAnim = PlayerPrefs.GetInt("SaludoPrincipalActive") == 1;
+        SoloDeletreoOpt = PlayerPrefs.GetInt("SoloDeletreo") == 1;
         ManagerInstancia = this;
         DontDestroyOnLoad(gameObject);
         MegaDiccionario = new List<string>[27]; 
@@ -113,5 +115,9 @@ public class MainManager : MonoBehaviour
 
     public static void SalvarAnimacionSaludoInicial(int valor){
         PlayerPrefs.SetInt("SaludoPrincipalActive",valor);
+    }
+
+    public static void SalvarSoloDeletreoOpt(int valor){
+        PlayerPrefs.SetInt("SoloDeletreo",valor);
     }
 }

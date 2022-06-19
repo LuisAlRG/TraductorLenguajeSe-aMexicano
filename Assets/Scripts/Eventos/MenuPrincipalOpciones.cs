@@ -33,6 +33,10 @@ public class MenuPrincipalOpciones : MonoBehaviour
                                 velocidad de retraso.
      * checkBoxPantallaCompleta Variable que se usa para cambiar el estado de check
                                 de la pantalla completa.
+     * checkBoxSoloDeletreo     Variable que se usa para cambiar el estado de check
+                                de la valriable de soloDeletreo del MainManager.cs .
+     * checkBoxSaludoInicial    Variable que se usa para cambiar el estado de check
+                                de la SaludoInicial .
      * resoluciones             Esta variable guarda la posibles resoluciones y puede
                                 usarse para decirle que resolución queremos.
      *
@@ -43,6 +47,7 @@ public class MenuPrincipalOpciones : MonoBehaviour
     [SerializeField] private TMP_Text velocidadAnimacionText;
     [SerializeField] private Scrollbar barraVelocidadAnimacion;
     [SerializeField] private Toggle checkBoxPantallaCompleta;
+    [SerializeField] private Toggle checkBoxSoloDeletreo;
     [SerializeField] private Toggle checkBoxSaludoInicial;
     
     // Esta variable guarda la posibles resoluciones y 
@@ -61,6 +66,7 @@ public class MenuPrincipalOpciones : MonoBehaviour
         recargarResoluciones();
         ReloadVelosidadAnimacionText();
         RevisarPantallaCompleta();
+        RevisarSoloDeletreo();
         RevisarAnimacionInicial();
 
         RevisarCalidad();
@@ -160,6 +166,12 @@ public class MenuPrincipalOpciones : MonoBehaviour
         opcionesModificada = true;
     }
 
+    public void OnSoloDeletreo(bool loQuiere){
+        MainManager.SalvarSoloDeletreoOpt(loQuiere? 1:0);
+        if(MainManager.ManagerInstancia != null)
+            MainManager.ManagerInstancia.SoloDeletreoOpt = loQuiere;
+    }
+
     public void OnAnimacionSaludoInicial(bool loQuiere){
         MainManager.SalvarAnimacionSaludoInicial(loQuiere? 1:0);
         if(MainManager.ManagerInstancia != null)
@@ -214,6 +226,14 @@ public class MenuPrincipalOpciones : MonoBehaviour
         checkBoxPantallaCompleta.isOn = Screen.fullScreen;
     }
 
+    public void RevisarSoloDeletreo()
+    {
+        if (checkBoxSoloDeletreo == null)
+            return;
+        if (MainManager.ManagerInstancia == null)
+            return;
+        checkBoxSoloDeletreo.isOn = MainManager.ManagerInstancia.SoloDeletreoOpt;
+    }
     public void RevisarAnimacionInicial()
     {
         if (checkBoxSaludoInicial == null)

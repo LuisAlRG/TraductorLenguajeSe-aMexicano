@@ -947,7 +947,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Version 0.7 del 17/06/22
+  m_text: Version 0.7.1 del 18/06/22
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 76e5dbe1ff6404c478e2e5533a02c3b3, type: 2}
   m_sharedMaterial: {fileID: 7845817619737625200, guid: 76e5dbe1ff6404c478e2e5533a02c3b3, type: 2}
@@ -1072,6 +1072,7 @@ MonoBehaviour:
   velocidadAnimacionText: {fileID: 0}
   barraVelocidadAnimacion: {fileID: 0}
   checkBoxPantallaCompleta: {fileID: 0}
+  checkBoxSoloDeletreo: {fileID: 0}
   checkBoxSaludoInicial: {fileID: 0}
   panelMenu: {fileID: 0}
 --- !u!1 &428123341

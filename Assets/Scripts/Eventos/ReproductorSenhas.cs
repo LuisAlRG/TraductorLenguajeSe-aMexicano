@@ -39,6 +39,8 @@ public class ReproductorSenhas : MonoBehaviour
     //esta variable sirbe para definir cuantos mili segundos hay entre letras al momento de deletrear.
     public int miliSegundoEspera;
 
+    public bool soloDeletreo = false;
+
     /* Estos valores son de carácter privado, solo se modifican en su mismo código, 
      * por la razón de que requiero que sus modificaciones estén dado en funciones 
      * para poder ser llamadas en otros objetos, para asegurar que no esten vacias y eso.
@@ -280,6 +282,13 @@ public class ReproductorSenhas : MonoBehaviour
             miliSegundoEspera = checarRetraso;
     }
 
+    public void RecargarSoloDeletreo()
+    {
+        if (MainManager.ManagerInstancia == null)
+            return;
+        soloDeletreo = MainManager.ManagerInstancia.SoloDeletreoOpt;
+    }
+
     void Start()
     {
         if (suAnimador == null)
@@ -289,6 +298,7 @@ public class ReproductorSenhas : MonoBehaviour
         int checarRetraso = MainManager.ManagerInstancia.MiliSegundoEsperaGlobal;
         if (checarRetraso > 400)
             miliSegundoEspera = checarRetraso;
+        soloDeletreo = MainManager.ManagerInstancia.SoloDeletreoOpt;
     }
 
     // Update is called once per frame

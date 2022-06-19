@@ -46,10 +46,10 @@ public class EstadoEnEspera : EstadoAtualPersonaje
     private bool puroDeletreo = false;
     public EstadoEnEspera() { }
 
-    public EstadoEnEspera(ReproductorSenhas suInstancia, bool puroDeletreo = false)
+    public EstadoEnEspera(ReproductorSenhas suInstancia)
         : base(suInstancia)
     {
-        this.puroDeletreo = puroDeletreo;
+        this.puroDeletreo = suInstancia.soloDeletreo;
     }
 
     /*
@@ -75,7 +75,7 @@ public class EstadoEnEspera : EstadoAtualPersonaje
     {
         
         Palabra actual = this.instancia.ObtenerPalabraActual();
-        Debug.Log(actual.tipo +":" + puroDeletreo);
+        //Debug.Log(actual.tipo +":" + puroDeletreo);
         if (actual.tipo == 2 && !puroDeletreo)
             return new EstadoEjecutandoAnimacion(this.instancia, actual.texto, actual.id);
         return new EstadoDeletreo(this.instancia, actual.texto);
