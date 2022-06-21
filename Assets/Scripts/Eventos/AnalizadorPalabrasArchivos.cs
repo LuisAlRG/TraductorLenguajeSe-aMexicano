@@ -132,12 +132,22 @@ public class AnalizadorPalabrasArchivos : AnalizadorPalabras
         reproductor.RecivirPalabrasEncontradas(palabrasSeparadas, EnDiccionario(palabrasSeparadas));
     }
 
-    protected override void AnalizarTexto/*Extra*/(){
+    protected override void AnalizarTexto02/*Extra*/(){
         string respuesta;
         respuesta = valueInputIn;
         respuesta = LipiarTexto(respuesta);
         string[] palabrasSeparadas;
         palabrasSeparadas = SepararPalabras(respuesta);
+        Palabra[] palabrasPreparadas = PrepararPalabras(palabrasSeparadas);
+        DesplegarPalabras(palabrasPreparadas);
+        EnviarAciaRerpoductor(palabrasPreparadas);
+    }
+
+    protected override void AnalizarTexto/*Lexico*/(){
+        string respuesta;
+        respuesta = valueInputIn;
+        AnalizadorComplejo anCom = new AnalizadorComplejo(respuesta);
+        Palabra[] palabrasSeparadas = anCom.AnalisarTexto().ToArray();
         Palabra[] palabrasPreparadas = PrepararPalabras(palabrasSeparadas);
         DesplegarPalabras(palabrasPreparadas);
         EnviarAciaRerpoductor(palabrasPreparadas);

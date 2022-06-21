@@ -14,7 +14,9 @@ public class Palabra
     public string texto;
     public int tipo;
     public int id = 0;
-
+    //Parametros para ubicarlo en el texto string
+    public int posicion;
+    public int largo;
     public Palabra()
     {
         this.texto  = "nada";

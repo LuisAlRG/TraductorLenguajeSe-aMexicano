@@ -106,7 +106,7 @@ public class AnalizadorPalabras : MonoBehaviour
 
     //Una idea de mejora es que en ves de generar 2 listas array para la palabra y saver si es conocido seria mejor
     //de una vez generar el elemento Palabra y pasarlo directamente al analisador como tal y su id.
-    virtual protected void AnalizarTexto/*Extra*/(){
+    virtual protected void AnalizarTexto02/*Extra*/(){
         string respuesta;
         respuesta = valueInputIn;
         respuesta = LipiarTexto(respuesta);
@@ -115,6 +115,35 @@ public class AnalizadorPalabras : MonoBehaviour
         Palabra[] palabrasPreparadas = PrepararPalabras(palabrasSeparadas);
         DesplegarPalabras(palabrasPreparadas);
         EnviarAciaRerpoductor(palabrasPreparadas);
+    }
+
+    /* algoritmo general de este método
+     * 1.- se guarda el input que este en el texto
+     * 2.- se analiza con el analizador
+     * 3.- se guarda las palabras encontradas y separadas
+     * 4.- revisa cuales son palabras conosidas
+     * 5.- se despliega para verlas en pantalla
+     * 6.- enviar las palabras al reproductor
+     */
+    //Una idea extra para usando el Analizador lexico
+    virtual protected void AnalizarTexto/*03Lexico*/(){
+        string respuesta;
+        respuesta = valueInputIn;
+        AnalizadorComplejo anCom = new AnalizadorComplejo(respuesta);
+        Palabra[] palabrasSeparadas = anCom.AnalisarTexto().ToArray();
+        Palabra[] palabrasPreparadas = PrepararPalabras(palabrasSeparadas);
+        DesplegarPalabras(palabrasPreparadas);
+        EnviarAciaRerpoductor(palabrasPreparadas);
+    }
+
+    protected Palabra[] TrasnformarAPalabra(PalabraComplejo[] inPalabras){
+        Palabra[] respuesta = new Palabra[inPalabras.Length];
+        int i = 0;
+        foreach(PalabraComplejo palabrita in inPalabras){
+            respuesta[i] = palabrita.ComoPalabra();
+            i++;
+        }
+        return respuesta;
     }
 
     //quitar elementos que no consideramos para el analizador
@@ -161,6 +190,20 @@ public class AnalizadorPalabras : MonoBehaviour
             resultado[i] = new Palabra(palabras[i],checaDiccionario[0],checaDiccionario[1]);
         }
         return resultado;
+    }
+
+    protected Palabra[] PrepararPalabras(Palabra[] palabras){
+        if(palabras == null)
+            return new Palabra[0];
+        for(int i = 0; palabras.Length > i; i++)
+        {
+            int[] checaDiccionario = palabraEnDiccionario(palabras[i].texto);
+            palabras[i].tipo =  checaDiccionario[0];
+            palabras[i].id =    checaDiccionario[1];
+            
+            //palabras[i] = new Palabra(palabras[i],checaDiccionario[0],checaDiccionario[1]);
+        }
+        return palabras;
     }
 
     private bool palabraEnDixionario(string palabra)

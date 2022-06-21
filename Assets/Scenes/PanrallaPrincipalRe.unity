@@ -1166,7 +1166,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2956729109089707825, guid: d114c914cb7f96c41b8b63c40832fd2f, type: 3}
       propertyPath: m_text
-      value: Creditos
+      value: "Cr\xE9ditos"
       objectReference: {fileID: 0}
     - target: {fileID: 2956729109089707825, guid: d114c914cb7f96c41b8b63c40832fd2f, type: 3}
       propertyPath: m_fontSize
@@ -5225,7 +5225,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Instituto Tecnologico de La Paz
+  m_text: "Instituto Tecnol\xF3gico de La Paz"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 76e5dbe1ff6404c478e2e5533a02c3b3, type: 2}
   m_sharedMaterial: {fileID: 7845817619737625200, guid: 76e5dbe1ff6404c478e2e5533a02c3b3, type: 2}
@@ -10566,6 +10566,18 @@ PrefabInstance:
     - target: {fileID: 3805732146431195010, guid: d114c914cb7f96c41b8b63c40832fd2f, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6451788145950499516, guid: d114c914cb7f96c41b8b63c40832fd2f, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.854902
+      objectReference: {fileID: 0}
+    - target: {fileID: 6451788145950499516, guid: d114c914cb7f96c41b8b63c40832fd2f, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.7058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 6451788145950499516, guid: d114c914cb7f96c41b8b63c40832fd2f, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.60784316
       objectReference: {fileID: 0}
     - target: {fileID: 6451788145950499516, guid: d114c914cb7f96c41b8b63c40832fd2f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

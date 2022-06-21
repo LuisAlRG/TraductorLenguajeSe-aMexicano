@@ -5,12 +5,13 @@ using UnityEngine;
 enum estado
 {
     NoPalabra,
-    EsPalabra
+    EsPalabra,
+    GionPalabra
 }
 public class AnalizadorComplejo 
 {
     private string todoTexto = "";
-    private List<PalabraComplejo> palabrasEncontradas;
+    private List<Palabra> palabrasEncontradas;
     private int puntero = 0;
     private int ultimoSeguro = 0;
     private string palabraDelMomento = "";
@@ -20,6 +21,7 @@ public class AnalizadorComplejo
     {
         this.todoTexto = texto;
         suEstado = estado.NoPalabra;
+        palabrasEncontradas = new List<Palabra>();
     }
 
     private char ConsegirChar()
@@ -39,7 +41,9 @@ public class AnalizadorComplejo
 
     private void AderirPalabraLista()
     {
-        PalabraComplejo p = new PalabraComplejo(palabraDelMomento);
+        Palabra p = new Palabra(palabraDelMomento);
+        p.posicion = ultimoSeguro + 1;
+        p.largo = puntero - ultimoSeguro -1;
         palabrasEncontradas.Add(p);
     }
 
@@ -72,13 +76,20 @@ public class AnalizadorComplejo
         Debug.Log(mensaje);
     }
 
-    protected List<PalabraComplejo> AnalisarTexto()
+    public List<Palabra> AnalisarTexto()
     {
         for(puntero = 0;puntero < todoTexto.Length ; puntero++)
         {
             procesar();
         }
-        return null;
+        if(suEstado == estado.EsPalabra || suEstado == estado.GionPalabra){
+            AderirPalabraLista();
+            ActualizarSeguro();
+            ResetearPalabra();
+            suEstado = estado.NoPalabra;
+        }
+
+        return palabrasEncontradas;
     }    
 
     private void procesar()
@@ -91,6 +102,9 @@ public class AnalizadorComplejo
             case estado.EsPalabra:
                 CasoEsPalabra();
                 break;
+            case estado.GionPalabra:
+                CasoGionPalabra();
+                break;
             default:
                 UnError(1);
                 break;
@@ -101,7 +115,7 @@ public class AnalizadorComplejo
     private void CasoNoPalabra()
     {
         char caracter = ConsegirChar();
-        if(EsLetra(caracter))
+        if(EsLetraMex(caracter))
         {
             AderirLetraPalabra(caracter);
             suEstado = estado.EsPalabra;
@@ -118,11 +132,12 @@ public class AnalizadorComplejo
         }
 
     }
+
     //caso EsPalabra
     private void CasoEsPalabra()
     {
         char caracter = ConsegirChar();
-        if(EsLetra(caracter))
+        if(EsLetraMex(caracter))
         {
             AderirLetraPalabra(caracter);
         }
@@ -132,6 +147,7 @@ public class AnalizadorComplejo
         }
         else if (EsGuion(caracter))
         {
+            suEstado = estado.GionPalabra;
             return;
         }
         else if (EsEspacio(caracter))
@@ -143,12 +159,49 @@ public class AnalizadorComplejo
         }
         else 
         {
+            AderirPalabraLista();
+            ActualizarSeguro();
+            ResetearPalabra();
+            suEstado = estado.NoPalabra;
+        }
+    }
+
+    //Caso estamos en guion y tenemos que revisar si hay una letra al siguente espacio
+    private void CasoGionPalabra(){
+        char caracter = ConsegirChar();
+        if(EsLetraMex(caracter))
+        {
+            AderirLetraPalabra(caracter);
+            suEstado = estado.EsPalabra;
+        }
+        else if (EsNumero(caracter))
+        {
+            AderirLetraPalabra(caracter);
+            suEstado = estado.EsPalabra;
+        }
+        //else if (EsGuion(caracter)){return;}
+        //else if (EsEspacio(caracter)){return;}
+        else 
+        {
             return;
         }
     }
 
     //caracteres de interes
     private bool EsLetra(char p) => char.IsLetter(p);
+    
+    /* el metodo de "IsLetter" permiten algunas 
+     * letras que no se encuentran en el alfabeto mexicano 
+     * por lo que requiero uno especifico
+     */
+    private bool EsLetraMex(char p){
+        string letrasMexicanas = 
+        "abcdefghijklmnñopqrstuvwxyz" +
+        "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" +
+        "áéíóúü" + 
+        "ÁÉÍÓÚÜ" ;
+        return letrasMexicanas.IndexOf(p) > -1;
+    }
 
     private bool EsNumero(char p) => char.IsDigit(p);
 

@@ -30,4 +30,8 @@ public class PalabraComplejo
         this.linea = lin;
         this.columna = col;
     }
+
+    public Palabra ComoPalabra(){
+        return new Palabra(texto,tipo);
+    }
 }
