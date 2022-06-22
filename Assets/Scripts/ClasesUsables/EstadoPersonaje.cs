@@ -181,7 +181,7 @@ public class EstadoDeletreo : EstadoAtualPersonaje
             respuesta = 9;
         if (letra == 'ó' || letra == 'Ó')
             respuesta = 15;
-        if (letra == 'ú' || letra == 'Ú')
+        if (letra == 'ú' || letra == 'Ú' || letra == 'ü' || letra == 'Ü')
             respuesta = 21;
         return respuesta;
     }
@@ -224,7 +224,7 @@ public class EstadoEjecutandoAnimacion : EstadoAtualPersonaje
     {
         this.palabra = palabraSent;
         this.idAnimacion = numero;
-        milisegundos = suInstancia.miliSegundoEspera;
+        milisegundos = suInstancia.miliSegundoEspera + 500;
         retraso = milisegundos;
         suInstancia.PrepararParaPalabra();
         suInstancia.MostrarAnimacionPalabra(numero);

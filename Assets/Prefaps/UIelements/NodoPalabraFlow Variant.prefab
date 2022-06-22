@@ -33,7 +33,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6603513445213906448, guid: ca38e942469208f45a93e41d604db02a, type: 3}
       propertyPath: m_Name
-      value: NodoPalabraFlow
+      value: NodoPalabraFlow Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6603513445213906449, guid: ca38e942469208f45a93e41d604db02a, type: 3}
       propertyPath: m_Pivot.x
@@ -118,6 +118,22 @@ PrefabInstance:
     - target: {fileID: 6603513445213906449, guid: ca38e942469208f45a93e41d604db02a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6603513445213906455, guid: ca38e942469208f45a93e41d604db02a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6603513445213906455, guid: ca38e942469208f45a93e41d604db02a, type: 3}
+      propertyPath: m_EffectColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6603513445213906455, guid: ca38e942469208f45a93e41d604db02a, type: 3}
+      propertyPath: m_EffectColor.g
+      value: 0.9528302
+      objectReference: {fileID: 0}
+    - target: {fileID: 6603513445213906455, guid: ca38e942469208f45a93e41d604db02a, type: 3}
+      propertyPath: m_EffectColor.r
+      value: 0.34963584
       objectReference: {fileID: 0}
     - target: {fileID: 7005019206616190774, guid: ca38e942469208f45a93e41d604db02a, type: 3}
       propertyPath: m_VerticalFit
