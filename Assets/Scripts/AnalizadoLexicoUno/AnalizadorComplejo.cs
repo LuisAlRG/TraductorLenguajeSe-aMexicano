@@ -2,6 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/* Script de analizador léxico
+ * básicamente agarra un script, revisa cada letra 
+ * y consigue los tokems (palabras solitarias) del 
+ * texto pasado, de este modo se puede sacar las palabras
+ * sin tener que previamente limpiarlos de caracteres
+ * extraños.
+ * Y podría funcionar para poder definir la posición 
+ * de la palabra en el texto.
+ */
+
 enum estado
 {
     NoPalabra,

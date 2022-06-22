@@ -25,16 +25,18 @@ public class AnalizadorPalabrasArchivos : AnalizadorPalabras
     private string textoEnCuestion = "";
 
     protected override void SuUpdate(){
-        if (Input.GetKeyUp(KeyCode.Alpha0))
-            MostrarAbecedarioDactilologico();
-        else if (Input.GetKeyUp(KeyCode.Alpha1))
-            TextoEjemplo("Hola mi nombre es Luis");
-        else if (Input.GetKeyUp(KeyCode.Alpha2))
-            TextoEjemplo("palabras en minusculas PALABRAS EN MAYUSCULAS");
-        else if (Input.GetKeyUp(KeyCode.Alpha3))
-            TextoEjemplo("jkzxñ");
-        else if (Input.GetKeyUp(KeyCode.Alpha4))
-            TextoEjemplo("aba bab");
+        if (Input.GetKey(KeyCode.Space) && Input.GetKey(KeyCode.P)) {
+            if (Input.GetKeyUp(KeyCode.Alpha0))
+                MostrarAbecedarioDactilologico();
+            else if (Input.GetKeyUp(KeyCode.Alpha1))
+                TextoEjemplo("Hola mi nombre es Luis");
+            else if (Input.GetKeyUp(KeyCode.Alpha2))
+                TextoEjemplo("palabras en minusculas PALABRAS EN MAYUSCULAS");
+            else if (Input.GetKeyUp(KeyCode.Alpha3))
+                TextoEjemplo("jkzxñ");
+            else if (Input.GetKeyUp(KeyCode.Alpha4))
+                TextoEjemplo("aba bab");
+        }
     }
 
     //evento que llama el explorador de archivo y lo analisa
@@ -69,7 +71,7 @@ public class AnalizadorPalabrasArchivos : AnalizadorPalabras
         {
             filter = "Documento Texto (*.txt) | *.txt",
             filterIndex = 0,
-            initialDir = "C:\\Users\\Luisito\\Documents",
+            //initialDir = "C:\\Users\\NoLuisito\\Documents",
             title = "Seleccione un archivo texto"
         };
 

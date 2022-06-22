@@ -78,11 +78,13 @@ public class AnalizadorPalabras : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.Alpha1))
             TextoEjemplo("Hola mi nombre es Luis");
         else if (Input.GetKeyUp(KeyCode.Alpha2))
-            TextoEjemplo("palabras en minusculas PALABRAS EN MAYUSCULAS");
+            TextoEjemplo("palabras en minúsculas PALABRAS EN MAYÚSCULAS");
         else if (Input.GetKeyUp(KeyCode.Alpha3))
             TextoEjemplo("jkzxñ");
         else if (Input.GetKeyUp(KeyCode.Alpha4))
             TextoEjemplo("aba bab");
+        else if (Input.GetKeyUp(KeyCode.Alpha5))
+            TextoEjemplo("áéíóúÁÉÍÓÚ");
     }
 
     /* algoritmo general de este método
