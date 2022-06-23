@@ -167,7 +167,9 @@ public class EstadoDeletreo : EstadoAtualPersonaje
     private int ObtenerNumeroLetra(char letra)
     {
         int respuesta = 0;
-        if (letra == 'ñ' || letra == 'Ñ')
+        if (letra >= '0' && letra <= '9')
+            respuesta = 27 + (letra - '0');
+        else if (letra == 'ñ' || letra == 'Ñ')
             respuesta = 27;
         else if (letra >= 'a' && letra <= 'z')
             respuesta = letra - 'a' + 1;
