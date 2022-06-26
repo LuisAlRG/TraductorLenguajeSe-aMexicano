@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 85491140}
   - component: {fileID: 85491139}
   m_Layer: 5
-  m_Name: PanelCuerpo
+  m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -796,8 +796,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 198.08868, y: 0}
-  m_SizeDelta: {x: 394.17737, y: 0}
+  m_AnchoredPosition: {x: 198.21976, y: 0}
+  m_SizeDelta: {x: 394.4395, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &523828959
 MonoBehaviour:
@@ -3113,8 +3113,7 @@ MonoBehaviour:
   textoInput: {fileID: 8791261585930404085}
   listaPalabrasEncontradas: {fileID: 523828961}
   reproductor: {fileID: 1303748896}
-  enDiccionario:
-  - hola|7001
+  enDiccionario: []
 --- !u!114 &1934120055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3238,7 +3237,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2008411935}
   m_Layer: 5
-  m_Name: PanelCompleto
+  m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3637,24 +3636,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a6020486a19b1445826aab53626f190, type: 3}
---- !u!1 &2913770737792933201 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2913770736427303181, guid: 5a6020486a19b1445826aab53626f190, type: 3}
-  m_PrefabInstance: {fileID: 2913770737792933200}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2913770737792933202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2913770737792933201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81059ac40a868d44e991a30f31f5c87e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  suRawImage: {fileID: 0}
 --- !u!224 &2913770737792933203 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2913770736427303182, guid: 5a6020486a19b1445826aab53626f190, type: 3}
