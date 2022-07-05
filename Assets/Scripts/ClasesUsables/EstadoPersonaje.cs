@@ -168,7 +168,7 @@ public class EstadoDeletreo : EstadoAtualPersonaje
     {
         int respuesta = 0;
         if (letra >= '0' && letra <= '9')
-            respuesta = 27 + (letra - '0');
+            respuesta = 28 + (letra - '0');
         else if (letra == 'ñ' || letra == 'Ñ')
             respuesta = 27;
         else if (letra >= 'a' && letra <= 'z')
@@ -185,6 +185,8 @@ public class EstadoDeletreo : EstadoAtualPersonaje
             respuesta = 15;
         if (letra == 'ú' || letra == 'Ú' || letra == 'ü' || letra == 'Ü')
             respuesta = 21;
+        
+
         return respuesta;
     }
 
